@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepak Satuluri — Backend Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060608;--surface:#0d0d10;--card:#111115;--border:rgba(255,255,255,0.07);--accent:#00ff87;--accent2:#00c8ff;--accent3:#ff6b6b;--text:#e2e2e2;--muted:#555;--muted2:#888}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform 0.1s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s ease;opacity:0.4}
+.cursor-ring.hovered{transform:scale(1.8);opacity:0.15}
+nav{position:fixed;top:0;width:100%;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5rem;background:rgba(6,6,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-1px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted2);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{width:100%}
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 5rem 4rem;position:relative;overflow:hidden}
+.glow-orb{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,135,0.06) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;animation:float 8s ease-in-out infinite}
+.glow-orb2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,255,0.05) 0%,transparent 70%);bottom:50px;left:100px;pointer-events:none;animation:float 11s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.hero-grid-bg{position:absolute;inset:0;opacity:0.025;background-image:linear-gradient(rgba(0,255,135,1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,135,1) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{position:relative;max-width:900px}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.4rem 1rem;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 0.5s ease 0.1s forwards}
+.dot-pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:800;line-height:0.95;letter-spacing:-3px;opacity:0;animation:fadeUp 0.6s ease 0.2s forwards}
+h1 .line2{color:var(--accent)}
+.typed-wrap{margin-top:1.5rem;font-size:16px;color:var(--muted2);opacity:0;animation:fadeUp 0.6s ease 0.4s forwards;min-height:26px}
+.typed-text{color:var(--accent2)}
+.cursor-blink{animation:blink 1s step-end infinite;color:var(--accent)}
+@keyframes blink{50%{opacity:0}}
+.hero-desc{margin-top:1.2rem;font-size:13px;color:var(--muted2);line-height:1.9;max-width:580px;opacity:0;animation:fadeUp 0.6s ease 0.55s forwards}
+.hero-cta{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.6s ease 0.7s forwards}
+.btn{padding:0.8rem 1.8rem;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.25s;border:none;display:inline-flex;align-items:center;gap:0.5rem}
+.btn-primary{background:var(--accent);color:#000}
+.btn-primary:hover{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.btn-outline{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--border)}
+.btn-outline:hover{box-shadow:inset 0 0 0 1px var(--accent);color:var(--accent)}
+.stats-row{display:flex;gap:3rem;flex-wrap:wrap;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);opacity:0;animation:fadeUp 0.6s ease 0.85s forwards}
+.stat{display:flex;flex-direction:column;gap:0.2rem}
+.stat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;line-height:1}
+.g{color:var(--accent)}.b{color:var(--accent2)}.r{color:var(--accent3)}
+.stat-label{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeIn 1s ease 2s forwards}
+.scroll-ind span{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+.scroll-arrow{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollDown 1.5s ease-in-out infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fadeIn{to{opacity:1}}
+section{padding:6rem 5rem}
+.sec-header{margin-bottom:3.5rem}
+.sec-label{font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:0.5rem}
+h2{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-1.5px}
+#skills{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.skill-bars{display:flex;flex-direction:column;gap:1.2rem}
+.skill-bar-header{display:flex;justify-content:space-between;margin-bottom:0.4rem}
+.skill-name{font-size:12px;color:var(--text)}
+.skill-pct{font-size:11px;color:var(--muted2)}
+.bar-track{height:3px;background:var(--border);position:relative;overflow:visible}
+.bar-fill{height:100%;width:0;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);position:relative}
+.bar-fill::after{content:'';position:absolute;right:-1px;top:-4px;width:10px;height:10px;border-radius:50%;background:inherit;box-shadow:0 0 8px currentColor}
+.bar-green{background:var(--accent)}.bar-blue{background:var(--accent2)}.bar-red{background:var(--accent3)}
+.tech-cloud{display:flex;flex-wrap:wrap;gap:0.6rem}
+.tech-pill{padding:0.4rem 0.9rem;font-size:11px;border:1px solid var(--border);color:var(--muted2);transition:all 0.2s;cursor:default;letter-spacing:0.5px}
+.tech-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,255,135,0.05);transform:translateY(-2px)}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent2),transparent)}
+.exp-item{position:relative;padding:0 0 3rem 2.5rem;opacity:0;transform:translateX(-20px);transition:all 0.6s ease}
+.exp-item.visible{opacity:1;transform:none}
+.exp-dot{position:absolute;left:-6px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);transition:background 0.3s}
+.exp-item:hover .exp-dot{background:var(--accent)}
+.exp-period{font-size:10px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:0.4rem}
+.exp-role-wrap{display:flex;align-items:baseline;gap:1rem;margin-bottom:0.2rem;flex-wrap:wrap}
+.exp-role{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700}
+.exp-co{font-size:11px;color:var(--muted2);letter-spacing:1px}
+.exp-badge{display:inline-block;padding:0.15rem 0.5rem;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(0,255,135,0.1);color:var(--accent);border:1px solid rgba(0,255,135,0.2);margin-bottom:0.8rem}
+.exp-points{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.8rem}
+.exp-points li{font-size:12px;color:var(--muted2);padding-left:1.2rem;position:relative;line-height:1.7}
+.exp-points li::before{content:'›';position:absolute;left:0;color:var(--accent);font-size:14px}
+.exp-points li strong{color:var(--text);font-weight:500}
+.impact-tag{display:inline-block;background:rgba(0,200,255,0.08);border:1px solid rgba(0,200,255,0.2);color:var(--accent2);font-size:10px;padding:0.1rem 0.4rem;margin-left:0.3rem;letter-spacing:0.5px;vertical-align:middle}
+#simulator{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.sim-canvas-wrap{background:var(--card);border:1px solid var(--border);padding:1.5rem}
+.sim-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:1rem}
+canvas{display:block;width:100%}
+.sim-controls{display:flex;flex-direction:column;gap:1.5rem}
+.ctrl-label{font-size:11px;color:var(--muted2);margin-bottom:0.5rem;display:flex;justify-content:space-between}
+.ctrl-label span{color:var(--accent);font-weight:500}
+input[type=range]{width:100%;-webkit-appearance:none;height:2px;background:var(--border);outline:none;accent-color:var(--accent)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer}
+.sim-metric{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+.m-card{background:var(--card);border:1px solid var(--border);padding:1rem;text-align:center;transition:border-color 0.3s}
+.m-card:hover{border-color:var(--accent)}
+.m-val{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1}
+.m-val.blue{color:var(--accent2)}
+.m-key{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:0.3rem}
+.toggle-btn{padding:0.6rem 1rem;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.toggle-btn.active{background:rgba(0,255,135,0.1);border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:0.5rem;flex-wrap:wrap}
+.log-stream{background:var(--bg);border:1px solid var(--border);padding:1rem;height:120px;overflow-y:auto;font-size:10px;color:var(--muted);line-height:1.8}
+.log-stream .info{color:var(--accent2)}.log-stream .warn{color:#f0c060}.log-stream .ok{color:var(--accent)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.proj-card{background:var(--card);border:1px solid var(--border);padding:2rem;transition:all 0.3s;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,135,0.03),transparent);opacity:0;transition:opacity 0.3s}
+.proj-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.proj-card:hover::before{opacity:1}
+.proj-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+.proj-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
+.proj-desc{font-size:12px;color:var(--muted2);line-height:1.8;margin-bottom:1.2rem}
+.proj-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem}
+.proj-tag{padding:0.25rem 0.6rem;font-size:10px;border:1px solid var(--border);color:var(--muted2);letter-spacing:0.5px}
+.proj-stats{display:flex;gap:1.5rem}
+.proj-stat{display:flex;flex-direction:column;gap:0.1rem}
+.proj-stat-val{font-size:14px;font-weight:500;color:var(--accent)}
+.proj-stat-key{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.proj-link{display:block;margin-top:1.2rem;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.proj-card:hover .proj-link{color:var(--accent)}
+#contact{text-align:center;background:var(--surface);border-top:1px solid var(--border)}
+.contact-grid{display:flex;justify-content:center;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
+.contact-card{background:var(--card);border:1px solid var(--border);padding:1.2rem 2rem;text-decoration:none;color:var(--text);transition:all 0.25s;display:flex;align-items:center;gap:0.8rem;font-size:12px}
+.contact-card:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.avail-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.5rem 1.2rem;font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:2rem}
+footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:10px;color:var(--muted);letter-spacing:1px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}
+@media(max-width:900px){nav{padding:1rem 1.5rem}.nav-links{display:none}section,#hero{padding:4rem 1.5rem}.skills-layout,.sim-grid{grid-template-columns:1fr;gap:2rem}.stats-row{gap:2rem}footer{flex-direction:column;gap:0.5rem}}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <div class="logo">DS<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#simulator">Live Demo</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot-pulse"></span>Available for remote roles</div>
+    <h1>Deepak<br><span class="line2">Satuluri</span></h1>
+    <div class="typed-wrap">// <span class="typed-text" id="typed"></span><span class="cursor-blink">_</span></div>
+    <p class="hero-desc">Senior Backend Engineer with 4 years building high-throughput distributed systems and API infrastructure. Founding engineer at an early-stage startup, shipping production systems at scale across Java, Kafka, multi-cloud, and API gateway platforms.</p>
+    <div class="hero-cta">
+      <a href="mailto:satulurideepak4@gmail.com" class="btn btn-primary">→ Get in Touch</a>
+      <a href="https://linkedin.com/in/satuluri-deepak-69227a1a1" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="https://github.com/satulurideepak4" target="_blank" class="btn btn-outline">GitHub</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num g">4+</span><span class="stat-label">Years Exp</span></div>
+      <div class="stat"><span class="stat-num b">50K+</span><span class="stat-label">Events/sec</span></div>
+      <div class="stat"><span class="stat-num g">40%</span><span class="stat-label">Cost Saved</span></div>
+      <div class="stat"><span class="stat-num r">10x</span><span class="stat-label">API Latency</span></div>
+      <div class="stat"><span class="stat-num b">22+</span><span class="stat-label">Policy Types</span></div>
+    </div>
+  </div>
+  <div class="scroll-ind"><span>Scroll</span><div class="scroll-arrow"></div></div>
+</section>
+
+<section id="skills">
+  <div class="sec-header reveal">
+    <p class="sec-label">// What I work with</p>
+    <h2>Technical Skills</h2>
+  </div>
+  <div class="skills-layout">
+    <div class="reveal">
+      <p style="font-size:12px;color:var(--muted2);margin-bottom:1.5rem">Core proficiency by domain</p>
+      <div class="skill-bars" id="skillBars">
+        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-name">Java 17 + Spring Boot</span><span class="skill-pct">95%</span></div><div class="bar-track"><div class="bar-fill bar-green" data-pct="95"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-name">Apache Kafka</span><span class="skill-pct">90%</span></div><div class="bar-track"><div class="bar-fill bar-green" data-pct="90"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-name">API Gateway (Kong / Apigee)</span><span class="skill-pct">92%</span></div><div class="bar-track"><div class="bar-fill bar-blue" data-pct="92"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-name">Multi-cloud (AWS / GCP / Azure)</span><span class="skill-pct">80%</span></div><div class="bar-track"><div class="bar-fill bar-blue" data-pct="80"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-name">PostgreSQL + MongoDB + Redis</span><span class="skill-pct">85%</span></div><div class="bar-track"><div class="bar-fill bar-red" data-pct="85"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-name">Docker + Kubernetes</span><span class="skill-pct">78%</span></div><div class="bar-track"><div class="bar-fill bar-red" data-pct="78"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-name">Python (FastAPI / Flask)</span><span class="skill-pct">75%</span></div><div class="bar-track"><div class="bar-fill bar-green" data-pct="75"></div></div></div>
+      </div>
+    </div>
+    <div class="reveal reveal-d1">
+      <p style="font-size:12px;color:var(--muted2);margin-bottom:1.5rem">Full technology stack — hover to highlight</p>
+      <div class="tech-cloud" id="techCloud"></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-header reveal">
+    <p class="sec-label">// Career timeline</p>
+    <h2>Experience</h2>
+  </div>
+  <div class="timeline">
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-period">Dec 2024 – Present</div>
+      <div class="exp-role-wrap">
+        <div class="exp-role">Senior Backend Engineer</div>
+        <div class="exp-co">APIwiz · Bengaluru</div>
+      </div>
+      <div class="exp-badge">Current Role</div>
+      <ul class="exp-points">
+        <li>Engineered <strong>Apiwiz Gateway</strong> (native API gateway) and <strong>API Builder</strong> — workflow automation platform for policy execution across distributed services</li>
+        <li>Designed a data archival pipeline routing 60-day-old records to cold storage (S3 / GCP / Azure Blob)<span class="impact-tag">40% cost reduction</span></li>
+        <li>Built Kafka pipelines processing <strong>50,000+ events/second</strong> with real-time Grafana consumer lag dashboards</li>
+        <li>Implemented AES/RSA encryption for secure multi-cloud data integrations</li>
+        <li>OAuth + JWT with <strong>multi-layer caching</strong> (Caffeine → Redis → PostgreSQL) for high-traffic endpoints</li>
+        <li>Kubernetes deployments with health checks, resource limits, rolling updates<span class="impact-tag">zero-downtime</span></li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-period">Aug 2023 – Nov 2024</div>
+      <div class="exp-role-wrap">
+        <div class="exp-role">Software Engineer II</div>
+        <div class="exp-co">Align Technology · Hyderabad</div>
+      </div>
+      <ul class="exp-points">
+        <li>Contributed to <strong>IDS healthcare platform</strong> and API Portfolio Management for patient records</li>
+        <li>Optimized MongoDB aggregation pipelines — identified N+1 patterns, applied schema denormalization<span class="impact-tag">significant query speedup</span></li>
+        <li>Built <strong>Doctor Subscription Program</strong> and Geox Region module extending core platform capabilities</li>
+        <li>Mockito unit testing, integration, regression, and UAT cycles for production reliability</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-period">Apr 2022 – Jul 2023</div>
+      <div class="exp-role-wrap">
+        <div class="exp-role">Software Engineer I</div>
+        <div class="exp-co">APIwiz · Remote</div>
+      </div>
+      <div class="exp-badge">Founding Engineer (1 of 5)</div>
+      <ul class="exp-points">
+        <li>Helped shape platform foundation and core API infrastructure from scratch</li>
+        <li>Led the <strong>Apigee-to-Kong migration</strong>, overhauling API governance and reducing vendor lock-in</li>
+        <li>Reduced API response times<span class="impact-tag">&gt;10s → &lt;1s</span> through routing and query optimization</li>
+        <li>Operated across IST / US / EU time zones in distributed async team environments</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="simulator">
+  <div class="sec-header reveal">
+    <p class="sec-label">// Interactive demo</p>
+    <h2>Live Kafka Pipeline Simulator</h2>
+    <p style="font-size:12px;color:var(--muted2);margin-top:0.5rem">Real-time visualization of the event streaming infrastructure I built at APIwiz. Tune the knobs.</p>
+  </div>
+  <div class="sim-grid">
+    <div>
+      <div class="sim-canvas-wrap">
+        <div class="sim-label">Event throughput — real-time chart</div>
+        <canvas id="kafkaCanvas" width="500" height="180"></canvas>
+      </div>
+      <div class="log-stream" id="logStream" style="margin-top:1rem">
+        <div class="info">[INFO] Kafka pipeline initializing...</div>
+      </div>
+    </div>
+    <div class="sim-controls">
+      <div class="sim-metric">
+        <div class="m-card"><div class="m-val" id="mEps">0</div><div class="m-key">Events/sec</div></div>
+        <div class="m-card"><div class="m-val blue" id="mLag">0ms</div><div class="m-key">Consumer Lag</div></div>
+        <div class="m-card"><div class="m-val" id="mTotal">0</div><div class="m-key">Total Processed</div></div>
+        <div class="m-card"><div class="m-val blue" id="mTopics">5</div><div class="m-key">Active Topics</div></div>
+      </div>
+      <div>
+        <div class="ctrl-label">Producer rate <span id="rateVal">25,000</span> events/s</div>
+        <input type="range" id="rateSlider" min="1000" max="60000" step="1000" value="25000">
+      </div>
+      <div>
+        <div class="ctrl-label">Partitions <span id="partVal">12</span></div>
+        <input type="range" id="partSlider" min="1" max="64" step="1" value="12">
+      </div>
+      <div>
+        <div class="ctrl-label">Lag alert threshold <span id="lagThVal">500</span>ms</div>
+        <input type="range" id="lagSlider" min="100" max="2000" step="100" value="500">
+      </div>
+      <div>
+        <div class="ctrl-label" style="margin-bottom:0.6rem;justify-content:flex-start">Simulate fault conditions</div>
+        <div class="btn-row">
+          <button class="toggle-btn" id="btnBurst" onclick="triggerBurst()">Producer Burst</button>
+          <button class="toggle-btn" id="btnDrop" onclick="triggerDrop()">Consumer Drop</button>
+          <button class="toggle-btn active" id="btnRun" onclick="toggleSim()">&#9632; Pause</button>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--muted2);line-height:1.8;background:var(--card);border:1px solid var(--border);padding:0.8rem">
+        <span style="color:var(--accent)">if</span> consumer_lag &gt; threshold<br>
+        <span style="color:var(--accent)">&#8594;</span> alert: lag_critical<br>
+        <span style="color:var(--accent)">&#8594;</span> scale: consumer_group++<br>
+        <span style="color:var(--accent)">&#8594;</span> notify: grafana_webhook
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-header reveal">
+    <p class="sec-label">// What I've built</p>
+    <h2>Projects</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card reveal">
+      <div class="proj-header"><div class="proj-name">RemoteScope</div><span style="font-size:1.5rem;opacity:0.5">&#128301;</span></div>
+      <p class="proj-desc">Personal remote job aggregator scraping 13+ sources (Remotive, Himalayas, Arc.dev, WeWorkRemotely) using Jsoup + OkHttp. Filtered REST API with salary, stack, experience, and remote eligibility filters. Daily cron scheduler + Caffeine caching.</p>
+      <div class="proj-stack"><span class="proj-tag">Java</span><span class="proj-tag">Spring Boot</span><span class="proj-tag">Kafka</span><span class="proj-tag">Redis</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Jsoup</span></div>
+      <div class="proj-stats"><div class="proj-stat"><span class="proj-stat-val">13+</span><span class="proj-stat-key">Sources</span></div><div class="proj-stat"><span class="proj-stat-val">Daily</span><span class="proj-stat-key">Sync</span></div><div class="proj-stat"><span class="proj-stat-val">REST</span><span class="proj-stat-key">API</span></div></div>
+      <a href="https://github.com/satulurideepak4" target="_blank" class="proj-link">&#8594; View on GitHub</a>
+    </div>
+    <div class="proj-card reveal reveal-d1">
+      <div class="proj-header"><div class="proj-name">Resume Screening Pipeline</div><span style="font-size:1.5rem;opacity:0.5">&#129302;</span></div>
+      <p class="proj-desc">AI-powered screening system using Google Gemini AI. Candidates submit against job descriptions; scoring pipeline ranks profiles and triggers automated HR email alerts via Kafka + RabbitMQ for async processing.</p>
+      <div class="proj-stack"><span class="proj-tag">Java</span><span class="proj-tag">Spring Boot</span><span class="proj-tag">Kafka</span><span class="proj-tag">RabbitMQ</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Gemini AI</span></div>
+      <div class="proj-stats"><div class="proj-stat"><span class="proj-stat-val">AI</span><span class="proj-stat-key">Scoring</span></div><div class="proj-stat"><span class="proj-stat-val">Async</span><span class="proj-stat-key">Processing</span></div><div class="proj-stat"><span class="proj-stat-val">Auto</span><span class="proj-stat-key">Notify</span></div></div>
+      <a href="https://github.com/satulurideepak4" target="_blank" class="proj-link">&#8594; View on GitHub</a>
+    </div>
+    <div class="proj-card reveal reveal-d2">
+      <div class="proj-header"><div class="proj-name">apiwiz-cli</div><span style="font-size:1.5rem;opacity:0.5">&#9889;</span></div>
+      <p class="proj-desc">kubectl-style CLI built with Java 17 + Picocli for API Gateway lifecycle management — virtual hosts, proxies, targets, runtime config. JSON-driven dynamic command registry using CommandSpec.wrapWithoutInspection() for runtime subcommand registration.</p>
+      <div class="proj-stack"><span class="proj-tag">Java 17</span><span class="proj-tag">Picocli</span><span class="proj-tag">Spring Boot</span><span class="proj-tag">Maven Shade</span></div>
+      <div class="proj-stats"><div class="proj-stat"><span class="proj-stat-val">kubectl</span><span class="proj-stat-key">Style</span></div><div class="proj-stat"><span class="proj-stat-val">5</span><span class="proj-stat-key">Commands</span></div><div class="proj-stat"><span class="proj-stat-val">JSON</span><span class="proj-stat-key">Driven</span></div></div>
+      <a href="https://github.com/satulurideepak4" target="_blank" class="proj-link">&#8594; View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="reveal">
+    <p class="sec-label" style="text-align:center">// Let's build something</p>
+    <h2 style="margin-bottom:1rem;text-align:center">Open to Remote Roles</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:1.5rem"><div class="avail-badge"><span class="dot-pulse"></span>Actively looking — global companies welcome</div></div>
+    <p style="font-size:12px;color:var(--muted2);max-width:500px;margin:0 auto;line-height:1.9;text-align:center">Senior Backend Engineer, Bengaluru. Available for remote roles at product-led global companies. Experienced working across IST / US / EU time zones.</p>
+  </div>
+  <div class="contact-grid reveal">
+    <a href="mailto:satulurideepak4@gmail.com" class="contact-card">&#9993; satulurideepak4@gmail.com</a>
+    <a href="https://linkedin.com/in/satuluri-deepak-69227a1a1" target="_blank" class="contact-card">in LinkedIn</a>
+    <a href="https://github.com/satulurideepak4" target="_blank" class="contact-card">&#9095; GitHub</a>
+    <a href="tel:+917095918889" class="contact-card">&#9742; +91 70959 18889</a>
+  </div>
+  <p style="margin-top:2rem;font-size:10px;color:var(--muted);letter-spacing:1px;text-align:center">B.Tech Computer Science · IIIT Andhra Pradesh · 2022 · GPA 7.94/10</p>
+</section>
+
+<footer>
+  <span>Deepak Satuluri &copy; 2025</span>
+  <span>Bengaluru, India</span>
+  <span>Built with Java &#9825;</span>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-5+'px';cur.style.top=my-5+'px'});
+setInterval(()=>{rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-18+'px';ring.style.top=ry-18+'px'},16);
+document.querySelectorAll('a,button,input[type=range],.proj-card,.contact-card,.tech-pill').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hovered'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hovered'));
+});
+
+const phrases=['Senior Backend Engineer','Distributed Systems Builder','API Platform Architect','Kafka Pipeline Engineer','Open to Remote Roles'];
+let pi=0,ci=0,del=false;
+const typedEl=document.getElementById('typed');
+function typeLoop(){
+  const p=phrases[pi];
+  if(!del){typedEl.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(typeLoop,2000);return}}
+  else{typedEl.textContent=p.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length}}
+  setTimeout(typeLoop,del?50:80);
+}
+setTimeout(typeLoop,1200);
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
+document.querySelectorAll('.reveal,.exp-item').forEach(el=>obs.observe(el));
+
+const barObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.bar-fill').forEach(b=>{b.style.width=b.dataset.pct+'%'});barObs.disconnect()}});
+},{threshold:0.3});
+barObs.observe(document.getElementById('skillBars'));
+
+const techs=[
+  {t:'Java 17',c:'g'},{t:'Spring Boot',c:'g'},{t:'Python',c:'b'},{t:'FastAPI',c:'b'},{t:'Flask',c:'b'},
+  {t:'Apache Kafka',c:'r'},{t:'RabbitMQ',c:'r'},{t:'SQS',c:'r'},{t:'Redis',c:'r'},{t:'Caffeine',c:''},
+  {t:'PostgreSQL',c:'b'},{t:'MySQL',c:'b'},{t:'MongoDB',c:'g'},{t:'AWS S3',c:''},{t:'GCP',c:''},
+  {t:'Azure Blob',c:''},{t:'Docker',c:'b'},{t:'Kubernetes',c:'b'},{t:'Jenkins',c:''},{t:'GitHub Actions',c:''},
+  {t:'Grafana',c:'r'},{t:'Prometheus',c:'r'},{t:'Kong',c:'g'},{t:'Apigee',c:'g'},{t:'Postman',c:''},
+  {t:'JMeter',c:''},{t:'AES/RSA',c:'r'},{t:'OAuth',c:'r'},{t:'JWT',c:'r'},{t:'Picocli',c:'g'},
+  {t:'Spring AI',c:'g'},{t:'Vector DB',c:'b'},{t:'Microservices',c:'g'},
+];
+const cm={g:'var(--accent)',b:'var(--accent2)',r:'var(--accent3)','':`var(--muted2)`};
+const tc=document.getElementById('techCloud');
+techs.forEach(({t,c})=>{
+  const s=document.createElement('span');s.className='tech-pill';s.textContent=t;
+  s.addEventListener('mouseenter',()=>s.style.color=cm[c]);
+  s.addEventListener('mouseleave',()=>s.style.color='');
+  tc.appendChild(s);
+});
+
+let running=true,totalEvents=0,burstMode=false,dropMode=false,tick=0,logCooldown=0;
+const rateSlider=document.getElementById('rateSlider');
+const partSlider=document.getElementById('partSlider');
+const lagSlider=document.getElementById('lagSlider');
+const canvas=document.getElementById('kafkaCanvas');
+const ctx2=canvas.getContext('2d');
+canvas.width=500;canvas.height=180;
+const dataPoints=new Array(100).fill(0);
+const lagData=new Array(100).fill(0);
+
+document.getElementById('rateSlider').oninput=()=>document.getElementById('rateVal').textContent=parseInt(rateSlider.value).toLocaleString();
+document.getElementById('partSlider').oninput=()=>document.getElementById('partVal').textContent=partSlider.value;
+document.getElementById('lagSlider').oninput=()=>document.getElementById('lagThVal').textContent=lagSlider.value;
+
+const logEl=document.getElementById('logStream');
+function addLog(msg,cls){
+  const d=document.createElement('div');if(cls)d.className=cls;
+  const n=new Date();
+  d.textContent=`[${n.getHours().toString().padStart(2,'0')}:${n.getMinutes().toString().padStart(2,'0')}:${n.getSeconds().toString().padStart(2,'0')}] ${msg}`;
+  logEl.appendChild(d);logEl.scrollTop=logEl.scrollHeight;
+  while(logEl.children.length>30)logEl.removeChild(logEl.firstChild);
+}
+
+function triggerBurst(){burstMode=!burstMode;document.getElementById('btnBurst').classList.toggle('active',burstMode);addLog(burstMode?'Producer burst: +30K events/s':'Burst deactivated','warn')}
+function triggerDrop(){dropMode=!dropMode;document.getElementById('btnDrop').classList.toggle('active',dropMode);if(dropMode)addLog('Consumer group offline — lag accumulating','warn');else addLog('Consumer group recovered','ok')}
+function toggleSim(){running=!running;const b=document.getElementById('btnRun');b.textContent=running?'&#9632; Pause':'&#9658; Run';b.classList.toggle('active',running)}
+
+function drawCanvas(){
+  const W=canvas.width,H=canvas.height,maxR=65000;
+  ctx2.clearRect(0,0,W,H);
+  ctx2.fillStyle='#0d0d10';ctx2.fillRect(0,0,W,H);
+  const step=W/dataPoints.length;
+  ctx2.strokeStyle='rgba(255,255,255,0.04)';ctx2.lineWidth=1;
+  for(let i=0;i<5;i++){const y=H*i/4;ctx2.beginPath();ctx2.moveTo(0,y);ctx2.lineTo(W,y);ctx2.stroke()}
+  ctx2.beginPath();ctx2.moveTo(0,H);
+  dataPoints.forEach((v,i)=>ctx2.lineTo(i*step,H-v/maxR*(H-10)));
+  ctx2.lineTo(W,H);ctx2.closePath();ctx2.fillStyle='rgba(0,255,135,0.07)';ctx2.fill();
+  ctx2.beginPath();ctx2.strokeStyle='#00ff87';ctx2.lineWidth=2;
+  dataPoints.forEach((v,i)=>{const x=i*step,y=H-v/maxR*(H-10);i===0?ctx2.moveTo(x,y):ctx2.lineTo(x,y)});
+  ctx2.stroke();
+  ctx2.beginPath();ctx2.strokeStyle='rgba(0,200,255,0.6)';ctx2.lineWidth=1;ctx2.setLineDash([3,3]);
+  lagData.forEach((v,i)=>{const x=i*step,y=H-Math.min(v/2000,1)*(H-10);i===0?ctx2.moveTo(x,y):ctx2.lineTo(x,y)});
+  ctx2.stroke();ctx2.setLineDash([]);
+  ctx2.fillStyle='rgba(255,255,255,0.3)';ctx2.font='10px monospace';
+  ctx2.fillText('events/s',6,14);
+  ctx2.fillStyle='rgba(0,200,255,0.5)';ctx2.fillText('lag (ms)',6,26);
+}
+
+setInterval(()=>{
+  if(!running)return;
+  const rate=Math.max(0,parseInt(rateSlider.value)+(burstMode?30000:0)-(dropMode?5000:0)+(Math.random()-0.5)*3000);
+  dataPoints.push(rate);dataPoints.shift();
+  const lag=dropMode?800+Math.random()*400:Math.max(0,(rate/50000)*300+Math.random()*50-25);
+  lagData.push(lag);lagData.shift();
+  totalEvents+=Math.round(rate/10);
+  const lt=parseInt(lagSlider.value);
+  document.getElementById('mEps').textContent=Math.round(rate/1000)+'K';
+  document.getElementById('mLag').textContent=Math.round(lag)+'ms';
+  document.getElementById('mTotal').textContent=totalEvents>1e6?(totalEvents/1e6).toFixed(1)+'M':totalEvents>1000?Math.round(totalEvents/1000)+'K':totalEvents;
+  document.getElementById('mTopics').textContent=parseInt(partSlider.value)>32?'8':parseInt(partSlider.value)>16?'6':'5';
+  if(lag>lt&&--logCooldown<=0){addLog(`ALERT consumer_lag=${Math.round(lag)}ms > threshold=${lt}ms — scaling consumer_group++`,'warn');logCooldown=20}
+  if(tick++%50===0)addLog(`Processed ${Math.round(rate/1000)}K events/s on ${['api-events','proxy-logs','audit-trail','metrics','runtime-config'][Math.floor(Math.random()*5)]}`,'info');
+  drawCanvas();
+},100);
+setTimeout(()=>{addLog('5 topics initialized','ok');setTimeout(()=>addLog('Consumer groups registered — Grafana monitoring active','ok'),500)},300);
+</script>
+</body>
+</html>
