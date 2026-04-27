@@ -9,10 +9,7 @@
 :root{--bg:#060608;--surface:#0d0d10;--card:#111115;--border:rgba(255,255,255,0.07);--accent:#00ff87;--accent2:#00c8ff;--accent3:#ff6b6b;--text:#e2e2e2;--muted:#555;--muted2:#888}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden;cursor:none}
-.cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform 0.1s}
-.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s ease;opacity:0.4}
-.cursor-ring.hovered{transform:scale(1.8);opacity:0.15}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden}
 nav{position:fixed;top:0;width:100%;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5rem;background:rgba(6,6,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-1px}
 .logo span{color:var(--accent)}
@@ -45,12 +42,12 @@ h1 .line2{color:var(--accent)}
 .btn-outline:hover{box-shadow:inset 0 0 0 1px var(--accent);color:var(--accent)}
 .btn-ghost{background:rgba(255,255,255,0.03);color:var(--text);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.05)}
 .btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--accent2);color:var(--accent2)}
-.hero-proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem;max-width:860px;opacity:0;animation:fadeUp 0.6s ease 0.78s forwards}
-.hero-proof-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:1rem 1.1rem;min-height:120px;position:relative;overflow:hidden}
+.hero-proof-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:2rem;max-width:1100px;opacity:0;animation:fadeUp 0.6s ease 0.78s forwards}
+.hero-proof-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:1.2rem 1.2rem;min-height:140px;position:relative;overflow:hidden}
 .hero-proof-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,255,135,0.08),transparent 70%);opacity:0;transition:opacity 0.25s;pointer-events:none}
 .hero-proof-card:hover::before{opacity:1}
 .hero-proof-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem}
-.hero-proof-value{font-family:'Syne',sans-serif;font-size:2rem;line-height:0.95;font-weight:800;color:var(--text);margin-bottom:0.4rem}
+.hero-proof-value{font-family:'Syne',sans-serif;font-size:1.55rem;line-height:1;font-weight:800;color:var(--text);margin-bottom:0.4rem}
 .hero-proof-copy{font-size:11px;line-height:1.7;color:var(--muted2)}
 .stats-row{display:flex;gap:3rem;flex-wrap:wrap;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);opacity:0;animation:fadeUp 0.6s ease 0.85s forwards}
 .stat{display:flex;flex-direction:column;gap:0.2rem}
@@ -172,7 +169,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .closing-kicker{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:0.7rem}
 .closing-title{font-family:'Syne',sans-serif;font-size:2rem;line-height:1.02;margin-bottom:0.8rem}
 .closing-copy{font-size:12px;color:var(--muted2);line-height:1.9;max-width:56ch}
-.closing-points{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.8rem;margin-top:1.2rem}
+.closing-points{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.8rem;margin-top:1.2rem}
 .closing-points li{border:1px solid var(--border);background:rgba(255,255,255,0.02);padding:0.9rem;font-size:11px;line-height:1.7;color:var(--muted2)}
 .closing-points strong{display:block;color:var(--text);font-size:11px;margin-bottom:0.35rem}
 .contact-grid{display:flex;justify-content:center;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
@@ -190,15 +187,13 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
   section,#hero{padding:4rem 1.5rem}
   .skills-layout,.sim-grid,.decision-layout,.spotlight-panel{grid-template-columns:1fr;gap:2rem}
   .stats-row,.hero-proof-grid,.proof-metrics{gap:0.8rem}
-  .hero-proof-grid,.proof-metrics,.closing-points{grid-template-columns:1fr}
+  .hero-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .proof-metrics,.closing-points{grid-template-columns:1fr}
   footer{flex-direction:column;gap:0.5rem}
 }
 </style>
 </head>
 <body>
-
-<div class="cursor" id="cur"></div>
-<div class="cursor-ring" id="ring"></div>
 
 <nav>
   <div class="logo">DS<span>.</span></div>
@@ -219,7 +214,7 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
     <div class="hero-badge"><span class="dot-pulse"></span>Available for remote roles</div>
     <h1>Deepak<br><span class="line2">Satuluri</span></h1>
     <div class="typed-wrap">// <span class="typed-text" id="typed"></span><span class="cursor-blink">_</span></div>
-    <p class="hero-desc">Senior Backend Engineer for teams that need backend systems to scale, stay reliable, and ship fast. I build production APIs, Kafka pipelines, platform tooling, and cloud-native services that reduce operational pain instead of creating more of it.</p>
+    <p class="hero-desc">Senior Backend Engineer for teams that need backend systems to scale, stay reliable, and ship fast. I build production APIs, Kafka pipelines, platform tooling, and cloud-native services that reduce operational pain instead of creating more of it. Actively contributing to open source — real tools, real repos, real impact.</p>
     <div class="hero-cta">
       <a href="#hire-signal" class="btn btn-primary">→ Start 60-sec Review</a>
       <a href="mailto:satulurideepak4@gmail.com" class="btn btn-ghost">Email Deepak</a>
@@ -229,7 +224,7 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
     <div class="hero-proof-grid">
       <div class="hero-proof-card">
         <div class="hero-proof-label">Why Me</div>
-        <div class="hero-proof-value">Founding</div>
+        <div class="hero-proof-value" style="font-size:1.1rem">Founding Engineer</div>
         <div class="hero-proof-copy">Worked as a founding engineer and built core platform capability with real ownership, not narrow ticket execution.</div>
       </div>
       <div class="hero-proof-card">
@@ -242,6 +237,11 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
         <div class="hero-proof-value">Remote</div>
         <div class="hero-proof-copy">Reliable across IST, US, and EU collaboration rhythms with clear async communication and follow-through.</div>
       </div>
+      <div class="hero-proof-card">
+        <div class="hero-proof-label">Open Source</div>
+        <div class="hero-proof-value" style="color:var(--accent)">Active</div>
+        <div class="hero-proof-copy">Actively contributing to open source — building real tools, shipping to GitHub, and collaborating in the community.</div>
+      </div>
     </div>
     <div class="stats-row">
       <div class="stat"><span class="stat-num g">4+</span><span class="stat-label">Years Exp</span></div>
@@ -249,6 +249,7 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
       <div class="stat"><span class="stat-num g">40%</span><span class="stat-label">Cost Saved</span></div>
       <div class="stat"><span class="stat-num r">10x</span><span class="stat-label">API Latency</span></div>
       <div class="stat"><span class="stat-num b">22+</span><span class="stat-label">Policy Types</span></div>
+      <div class="stat"><span class="stat-num g">OSS</span><span class="stat-label">Active Contributor</span></div>
     </div>
   </div>
   <div class="scroll-ind"><span>Scroll</span><div class="scroll-arrow"></div></div>
@@ -266,15 +267,15 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
       <div class="decision-tabs" id="decisionTabs">
         <button class="decision-tab active" type="button" data-proof="scale">
           <strong>I need someone who can handle scale.</strong>
-          <span>Show throughput, observability, performance and systems thinking.</span>
+          <span>Kafka pipelines at 50K+ events/sec, 10x API latency reduction, Grafana lag dashboards, multi-layer caching, and cloud-native infra — with open-source tooling to back it up.</span>
         </button>
         <button class="decision-tab" type="button" data-proof="ownership">
           <strong>I need someone who takes ownership.</strong>
-          <span>Show founding-engineer behavior, ambiguous execution and product-level responsibility.</span>
+          <span>1 of 5 founding engineers at APIwiz — shaped platform architecture from scratch, delivered gateway, archival, security and builder capabilities across 22+ policy types with no playbook.</span>
         </button>
         <button class="decision-tab" type="button" data-proof="remote">
           <strong>I need someone who will work well remotely.</strong>
-          <span>Show async communication, cross-time-zone execution and reliability as a teammate.</span>
+          <span>Has operated across IST, US, and EU time zones in startup and enterprise environments — structured async communication, clear handoffs, and consistent delivery without needing daily standups.</span>
         </button>
       </div>
     </div>
@@ -504,6 +505,7 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
       <li><strong>Production-first</strong>Used to building systems that need monitoring, scaling, fault handling, and operational clarity.</li>
       <li><strong>High-agency</strong>Comfortable taking vague backend problems and turning them into shipped solutions with clean tradeoffs.</li>
       <li><strong>Remote-ready</strong>Clear communicator across time zones, with enough structure to keep work moving without constant sync.</li>
+      <li><strong>Open Source Active</strong>Actively contributing to open-source projects — not just consuming libraries but shipping real, usable tools to the community.</li>
     </ul>
   </div>
   <div class="contact-grid reveal">
@@ -522,14 +524,6 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
 </footer>
 
 <script>
-const cur=document.getElementById('cur'),ring=document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-5+'px';cur.style.top=my-5+'px'});
-setInterval(()=>{rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-18+'px';ring.style.top=ry-18+'px'},16);
-document.querySelectorAll('a,button,input[type=range],.proj-card,.contact-card,.tech-pill').forEach(el=>{
-  el.addEventListener('mouseenter',()=>ring.classList.add('hovered'));
-  el.addEventListener('mouseleave',()=>ring.classList.remove('hovered'));
-});
 
 const phrases=['Senior Backend Engineer','Distributed Systems Builder','API Platform Architect','Kafka Pipeline Engineer','Engineer You Can Trust With Production'];
 let pi=0,ci=0,del=false;
@@ -557,7 +551,7 @@ const techs=[
   {t:'Azure Blob',c:''},{t:'Docker',c:'b'},{t:'Kubernetes',c:'b'},{t:'Jenkins',c:''},{t:'GitHub Actions',c:''},
   {t:'Grafana',c:'r'},{t:'Prometheus',c:'r'},{t:'Kong',c:'g'},{t:'Apigee',c:'g'},{t:'Postman',c:''},
   {t:'JMeter',c:''},{t:'AES/RSA',c:'r'},{t:'OAuth',c:'r'},{t:'JWT',c:'r'},{t:'Picocli',c:'g'},
-  {t:'Spring AI',c:'g'},{t:'Vector DB',c:'b'},{t:'Microservices',c:'g'},
+  {t:'Spring AI',c:'g'},{t:'Vector DB',c:'b'},{t:'Microservices',c:'g'},{t:'Open Source Contributor',c:'g'},
 ];
 const cm={g:'var(--accent)',b:'var(--accent2)',r:'var(--accent3)','':`var(--muted2)`};
 const tc=document.getElementById('techCloud');
@@ -718,7 +712,7 @@ function addLog(msg,cls){
 
 function triggerBurst(){burstMode=!burstMode;document.getElementById('btnBurst').classList.toggle('active',burstMode);addLog(burstMode?'Producer burst: +30K events/s':'Burst deactivated','warn')}
 function triggerDrop(){dropMode=!dropMode;document.getElementById('btnDrop').classList.toggle('active',dropMode);if(dropMode)addLog('Consumer group offline — lag accumulating','warn');else addLog('Consumer group recovered','ok')}
-function toggleSim(){running=!running;const b=document.getElementById('btnRun');b.textContent=running?'&#9632; Pause':'&#9658; Run';b.classList.toggle('active',running)}
+function toggleSim(){running=!running;const b=document.getElementById('btnRun');b.innerHTML=running?'&#9632; Pause':'&#9658; Run';b.classList.toggle('active',running)}
 
 function drawCanvas(){
   const W=canvas.width,H=canvas.height,maxR=65000;
