@@ -11,6 +11,8 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden}
 nav{position:fixed;top:0;width:100%;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5rem;background:rgba(6,6,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-cv{padding:0.45rem 1.1rem;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:#000;background:var(--accent);transition:all 0.25s;white-space:nowrap}
+.nav-cv:hover{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-1px}
 .logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
@@ -182,7 +184,7 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
 .reveal.visible{opacity:1;transform:none}
 .reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}
 @media(max-width:900px){
-  nav{padding:1rem 1.5rem}
+  nav{padding:1rem 1.5rem;gap:1rem}
   .nav-links{display:none}
   section,#hero{padding:4rem 1.5rem}
   .skills-layout,.sim-grid,.decision-layout,.spotlight-panel{grid-template-columns:1fr;gap:2rem}
@@ -212,6 +214,7 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
   <div class="glow-orb2"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="dot-pulse"></span>Available for remote roles</div>
+    <a href="https://drive.google.com/file/d/1keNLuyrX8rZKhQho6AQNV0njHgJaiRiD/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="nav-cv">View My CV</a>
     <h1>Deepak<br><span class="line2">Satuluri</span></h1>
     <div class="typed-wrap">// <span class="typed-text" id="typed"></span><span class="cursor-blink">_</span></div>
     <p class="hero-desc">Senior Backend Engineer for teams that need backend systems to scale, stay reliable, and ship fast. I build production APIs, Kafka pipelines, platform tooling, and cloud-native services that reduce operational pain instead of creating more of it. Actively contributing to open source — real tools, real repos, real impact.</p>
