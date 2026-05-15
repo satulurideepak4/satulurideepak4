@@ -1,199 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deepak Satuluri — Backend Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#060608;--surface:#0d0d10;--card:#111115;--border:rgba(255,255,255,0.07);--accent:#00ff87;--accent2:#00c8ff;--accent3:#ff6b6b;--text:#e2e2e2;--muted:#555;--muted2:#888}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden}
-nav{position:fixed;top:0;width:100%;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5rem;background:rgba(6,6,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-cv{padding:0.45rem 1.1rem;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:#000;background:var(--accent);transition:all 0.25s;white-space:nowrap}
-.nav-cv:hover{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-1px}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{color:var(--muted2);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s}
-.nav-links a:hover{color:var(--accent)}
-.nav-links a:hover::after{width:100%}
-#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 5rem 4rem;position:relative;overflow:hidden}
-.glow-orb{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,135,0.06) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;animation:float 8s ease-in-out infinite}
-.glow-orb2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,255,0.05) 0%,transparent 70%);bottom:50px;left:100px;pointer-events:none;animation:float 11s ease-in-out infinite reverse}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
-.hero-grid-bg{position:absolute;inset:0;opacity:0.025;background-image:linear-gradient(rgba(0,255,135,1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,135,1) 1px,transparent 1px);background-size:60px 60px}
-.hero-content{position:relative;max-width:900px}
-.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.4rem 1rem;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 0.5s ease 0.1s forwards}
-.dot-pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
-h1{font-family:'Syne',sans-serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:800;line-height:0.95;letter-spacing:-3px;opacity:0;animation:fadeUp 0.6s ease 0.2s forwards}
-h1 .line2{color:var(--accent)}
-.typed-wrap{margin-top:1.5rem;font-size:16px;color:var(--muted2);opacity:0;animation:fadeUp 0.6s ease 0.4s forwards;min-height:26px}
-.typed-text{color:var(--accent2)}
-.cursor-blink{animation:blink 1s step-end infinite;color:var(--accent)}
-@keyframes blink{50%{opacity:0}}
-.hero-desc{margin-top:1.2rem;font-size:13px;color:var(--muted2);line-height:1.9;max-width:580px;opacity:0;animation:fadeUp 0.6s ease 0.55s forwards}
-.hero-cta{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.6s ease 0.7s forwards}
-.btn{padding:0.8rem 1.8rem;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.25s;border:none;display:inline-flex;align-items:center;gap:0.5rem}
-.btn-primary{background:var(--accent);color:#000}
-.btn-primary:hover{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-.btn-outline{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--border)}
-.btn-outline:hover{box-shadow:inset 0 0 0 1px var(--accent);color:var(--accent)}
-.btn-ghost{background:rgba(255,255,255,0.03);color:var(--text);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.05)}
-.btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--accent2);color:var(--accent2)}
-.hero-proof-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:2rem;max-width:1100px;opacity:0;animation:fadeUp 0.6s ease 0.78s forwards}
-.hero-proof-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:1.2rem 1.2rem;min-height:140px;position:relative;overflow:hidden}
-.hero-proof-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,255,135,0.08),transparent 70%);opacity:0;transition:opacity 0.25s;pointer-events:none}
-.hero-proof-card:hover::before{opacity:1}
-.hero-proof-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem}
-.hero-proof-value{font-family:'Syne',sans-serif;font-size:1.55rem;line-height:1;font-weight:800;color:var(--text);margin-bottom:0.4rem}
-.hero-proof-copy{font-size:11px;line-height:1.7;color:var(--muted2)}
-.stats-row{display:flex;gap:3rem;flex-wrap:wrap;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);opacity:0;animation:fadeUp 0.6s ease 0.85s forwards}
-.stat{display:flex;flex-direction:column;gap:0.2rem}
-.stat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;line-height:1}
-.g{color:var(--accent)}.b{color:var(--accent2)}.r{color:var(--accent3)}
-.stat-label{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
-.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeIn 1s ease 2s forwards}
-.scroll-ind span{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
-.scroll-arrow{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollDown 1.5s ease-in-out infinite}
-@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-@keyframes fadeIn{to{opacity:1}}
-section{padding:6rem 5rem}
-.sec-header{margin-bottom:3.5rem}
-.sec-label{font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:0.5rem}
-h2{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-1.5px}
-#hire-signal{padding-top:3rem}
-.decision-layout{display:grid;grid-template-columns:0.95fr 1.05fr;gap:1.5rem;align-items:stretch}
-.decision-panel,.proof-panel{background:var(--card);border:1px solid var(--border);padding:1.5rem;position:relative;overflow:hidden}
-.decision-panel::before,.proof-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(140deg,rgba(0,200,255,0.04),transparent 60%);pointer-events:none}
-.decision-kicker{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:0.7rem}
-.decision-copy{font-size:12px;color:var(--muted2);line-height:1.8;margin-bottom:1.3rem;max-width:46ch}
-.decision-tabs{display:flex;flex-direction:column;gap:0.8rem}
-.decision-tab{width:100%;text-align:left;background:transparent;border:1px solid var(--border);padding:1rem 1.1rem;color:var(--text);font-family:'JetBrains Mono',monospace;cursor:pointer;transition:all 0.25s}
-.decision-tab:hover,.decision-tab.active{border-color:var(--accent);background:rgba(0,255,135,0.06);transform:translateX(6px)}
-.decision-tab strong{display:block;font-size:12px;font-weight:500;margin-bottom:0.35rem}
-.decision-tab span{display:block;font-size:10px;line-height:1.7;color:var(--muted2)}
-.proof-headline{font-family:'Syne',sans-serif;font-size:2rem;line-height:1.02;max-width:12ch;margin-bottom:0.9rem}
-.proof-sub{font-size:12px;color:var(--muted2);line-height:1.9;margin-bottom:1rem;max-width:52ch}
-.proof-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.8rem;margin-bottom:1rem}
-.proof-metric{border:1px solid var(--border);padding:0.9rem;background:rgba(255,255,255,0.02)}
-.proof-metric strong{display:block;font-family:'Syne',sans-serif;font-size:1.45rem;line-height:1;color:var(--accent)}
-.proof-metric span{display:block;font-size:10px;letter-spacing:1px;color:var(--muted);margin-top:0.35rem;text-transform:uppercase}
-.proof-list{list-style:none;display:flex;flex-direction:column;gap:0.75rem}
-.proof-list li{padding-left:1.1rem;position:relative;font-size:12px;line-height:1.8;color:var(--muted2)}
-.proof-list li::before{content:'+';position:absolute;left:0;color:var(--accent)}
-#skills{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.skill-bars{display:flex;flex-direction:column;gap:1.2rem}
-.skill-bar-header{display:flex;justify-content:space-between;margin-bottom:0.4rem}
-.skill-name{font-size:12px;color:var(--text)}
-.skill-pct{font-size:11px;color:var(--muted2)}
-.bar-track{height:3px;background:var(--border);position:relative;overflow:visible}
-.bar-fill{height:100%;width:0;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);position:relative}
-.bar-fill::after{content:'';position:absolute;right:-1px;top:-4px;width:10px;height:10px;border-radius:50%;background:inherit;box-shadow:0 0 8px currentColor}
-.bar-green{background:var(--accent)}.bar-blue{background:var(--accent2)}.bar-red{background:var(--accent3)}
-.tech-cloud{display:flex;flex-wrap:wrap;gap:0.6rem}
-.tech-pill{padding:0.4rem 0.9rem;font-size:11px;border:1px solid var(--border);color:var(--muted2);transition:all 0.2s;cursor:default;letter-spacing:0.5px}
-.tech-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,255,135,0.05);transform:translateY(-2px)}
-.timeline{position:relative;padding-left:2rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent2),transparent)}
-.exp-item{position:relative;padding:0 0 3rem 2.5rem;opacity:0;transform:translateX(-20px);transition:all 0.6s ease}
-.exp-item.visible{opacity:1;transform:none}
-.exp-dot{position:absolute;left:-6px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);transition:background 0.3s}
-.exp-item:hover .exp-dot{background:var(--accent)}
-.exp-period{font-size:10px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:0.4rem}
-.exp-role-wrap{display:flex;align-items:baseline;gap:1rem;margin-bottom:0.2rem;flex-wrap:wrap}
-.exp-role{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700}
-.exp-co{font-size:11px;color:var(--muted2);letter-spacing:1px}
-.exp-badge{display:inline-block;padding:0.15rem 0.5rem;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(0,255,135,0.1);color:var(--accent);border:1px solid rgba(0,255,135,0.2);margin-bottom:0.8rem}
-.exp-points{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.8rem}
-.exp-points li{font-size:12px;color:var(--muted2);padding-left:1.2rem;position:relative;line-height:1.7}
-.exp-points li::before{content:'›';position:absolute;left:0;color:var(--accent);font-size:14px}
-.exp-points li strong{color:var(--text);font-weight:500}
-.impact-tag{display:inline-block;background:rgba(0,200,255,0.08);border:1px solid rgba(0,200,255,0.2);color:var(--accent2);font-size:10px;padding:0.1rem 0.4rem;margin-left:0.3rem;letter-spacing:0.5px;vertical-align:middle}
-#simulator{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-.sim-canvas-wrap{background:var(--card);border:1px solid var(--border);padding:1.5rem}
-.sim-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:1rem}
-canvas{display:block;width:100%}
-.sim-controls{display:flex;flex-direction:column;gap:1.5rem}
-.ctrl-label{font-size:11px;color:var(--muted2);margin-bottom:0.5rem;display:flex;justify-content:space-between}
-.ctrl-label span{color:var(--accent);font-weight:500}
-input[type=range]{width:100%;-webkit-appearance:none;height:2px;background:var(--border);outline:none;accent-color:var(--accent)}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer}
-.sim-metric{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
-.m-card{background:var(--card);border:1px solid var(--border);padding:1rem;text-align:center;transition:border-color 0.3s}
-.m-card:hover{border-color:var(--accent)}
-.m-val{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1}
-.m-val.blue{color:var(--accent2)}
-.m-key{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:0.3rem}
-.toggle-btn{padding:0.6rem 1rem;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
-.toggle-btn.active{background:rgba(0,255,135,0.1);border-color:var(--accent);color:var(--accent)}
-.btn-row{display:flex;gap:0.5rem;flex-wrap:wrap}
-.log-stream{background:var(--bg);border:1px solid var(--border);padding:1rem;height:120px;overflow-y:auto;font-size:10px;color:var(--muted);line-height:1.8}
-.log-stream .info{color:var(--accent2)}.log-stream .warn{color:#f0c060}.log-stream .ok{color:var(--accent)}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
-.proj-card{background:var(--card);border:1px solid var(--border);padding:2rem;transition:all 0.3s;position:relative;overflow:hidden}
-.proj-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,135,0.03),transparent);opacity:0;transition:opacity 0.3s;pointer-events:none}
-.proj-card:hover{border-color:var(--accent);transform:translateY(-4px)}
-.proj-card:hover::before{opacity:1}
-.proj-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
-.proj-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
-.proj-desc{font-size:12px;color:var(--muted2);line-height:1.8;margin-bottom:1.2rem}
-.proj-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem}
-.proj-tag{padding:0.25rem 0.6rem;font-size:10px;border:1px solid var(--border);color:var(--muted2);letter-spacing:0.5px}
-.proj-stats{display:flex;gap:1.5rem}
-.proj-stat{display:flex;flex-direction:column;gap:0.1rem}
-.proj-stat-val{font-size:14px;font-weight:500;color:var(--accent)}
-.proj-stat-key{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
-.proj-actions{display:flex;gap:0.8rem;align-items:center;justify-content:space-between;margin-top:1.2rem;flex-wrap:wrap}
-.proj-link,.proj-button{font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:color 0.2s}
-.proj-link{color:var(--muted)}
-.proj-card:hover .proj-link{color:var(--accent)}
-.proj-button{background:none;border:none;color:var(--accent2);padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace}
-.proj-button:hover{color:var(--accent)}
-.spotlight-panel{margin-top:1.5rem;background:var(--card);border:1px solid var(--border);padding:1.6rem;display:grid;grid-template-columns:1.1fr 0.9fr;gap:1.2rem;position:relative;overflow:hidden}
-.spotlight-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,135,0.04),transparent 60%);pointer-events:none}
-.spotlight-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:0.5rem}
-.spotlight-title{font-family:'Syne',sans-serif;font-size:1.9rem;line-height:1;margin-bottom:0.8rem}
-.spotlight-copy{font-size:12px;line-height:1.9;color:var(--muted2);max-width:58ch}
-.spotlight-list{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
-.spotlight-list li{font-size:11px;line-height:1.8;color:var(--muted2);padding-left:1rem;position:relative}
-.spotlight-list li::before{content:'>';position:absolute;left:0;color:var(--accent)}
-.spotlight-stack{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem}
-.spotlight-chip{padding:0.3rem 0.65rem;border:1px solid var(--border);font-size:10px;color:var(--muted2)}
-#contact{text-align:center;background:var(--surface);border-top:1px solid var(--border)}
-.closing-panel{max-width:860px;margin:2.5rem auto 0;background:var(--card);border:1px solid var(--border);padding:1.8rem;position:relative;overflow:hidden;text-align:left}
-.closing-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,135,0.05),transparent 60%);pointer-events:none}
-.closing-kicker{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:0.7rem}
-.closing-title{font-family:'Syne',sans-serif;font-size:2rem;line-height:1.02;margin-bottom:0.8rem}
-.closing-copy{font-size:12px;color:var(--muted2);line-height:1.9;max-width:56ch}
-.closing-points{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.8rem;margin-top:1.2rem}
-.closing-points li{border:1px solid var(--border);background:rgba(255,255,255,0.02);padding:0.9rem;font-size:11px;line-height:1.7;color:var(--muted2)}
-.closing-points strong{display:block;color:var(--text);font-size:11px;margin-bottom:0.35rem}
-.contact-grid{display:flex;justify-content:center;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
-.contact-card{background:var(--card);border:1px solid var(--border);padding:1.2rem 2rem;text-decoration:none;color:var(--text);transition:all 0.25s;display:flex;align-items:center;gap:0.8rem;font-size:12px}
-.contact-card:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
-.avail-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.5rem 1.2rem;font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:2rem}
-footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:10px;color:var(--muted);letter-spacing:1px}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
-.reveal.visible{opacity:1;transform:none}
-.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}
-@media(max-width:900px){
-  nav{padding:1rem 1.5rem;gap:1rem}
-  .nav-links{display:none}
-  section,#hero{padding:4rem 1.5rem}
-  .skills-layout,.sim-grid,.decision-layout,.spotlight-panel{grid-template-columns:1fr;gap:2rem}
-  .stats-row,.hero-proof-grid,.proof-metrics{gap:0.8rem}
-  .hero-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .proof-metrics,.closing-points{grid-template-columns:1fr}
-  footer{flex-direction:column;gap:0.5rem}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepak Satuluri — Backend Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#060608;--surface:#0d0d10;--card:#111115;--border:rgba(255,255,255,0.07);--accent:#00ff87;--accent2:#00c8ff;--accent3:#ff6b6b;--text:#e2e2e2;--muted:#555;--muted2:#888}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden}
+    nav{position:fixed;top:0;width:100%;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5rem;background:rgba(6,6,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav-cv{padding:0.45rem 1.1rem;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:#000;background:var(--accent);transition:all 0.25s;white-space:nowrap}
+    .nav-cv:hover{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+    .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-1px}
+    .logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{color:var(--muted2);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-links a:hover::after{width:100%}
+    #hero{min-height:100vh;display:flex;align-items:center;padding:8rem 5rem 4rem;position:relative;overflow:hidden}
+    .glow-orb{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,135,0.06) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;animation:float 8s ease-in-out infinite}
+    .glow-orb2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,255,0.05) 0%,transparent 70%);bottom:50px;left:100px;pointer-events:none;animation:float 11s ease-in-out infinite reverse}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+    .hero-grid-bg{position:absolute;inset:0;opacity:0.025;background-image:linear-gradient(rgba(0,255,135,1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,135,1) 1px,transparent 1px);background-size:60px 60px}
+    .hero-content{position:relative;max-width:900px}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.4rem 1rem;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 0.5s ease 0.1s forwards}
+    .dot-pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+    h1{font-family:'Syne',sans-serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:800;line-height:0.95;letter-spacing:-3px;opacity:0;animation:fadeUp 0.6s ease 0.2s forwards}
+    h1 .line2{color:var(--accent)}
+    .typed-wrap{margin-top:1.5rem;font-size:16px;color:var(--muted2);opacity:0;animation:fadeUp 0.6s ease 0.4s forwards;min-height:26px}
+    .typed-text{color:var(--accent2)}
+    .cursor-blink{animation:blink 1s step-end infinite;color:var(--accent)}
+    @keyframes blink{50%{opacity:0}}
+    .hero-desc{margin-top:1.2rem;font-size:13px;color:var(--muted2);line-height:1.9;max-width:580px;opacity:0;animation:fadeUp 0.6s ease 0.55s forwards}
+    .hero-cta{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.6s ease 0.7s forwards}
+    .btn{padding:0.8rem 1.8rem;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.25s;border:none;display:inline-flex;align-items:center;gap:0.5rem}
+    .btn-primary{background:var(--accent);color:#000}
+    .btn-primary:hover{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+    .btn-outline{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--border)}
+    .btn-outline:hover{box-shadow:inset 0 0 0 1px var(--accent);color:var(--accent)}
+    .btn-ghost{background:rgba(255,255,255,0.03);color:var(--text);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.05)}
+    .btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--accent2);color:var(--accent2)}
+    .hero-proof-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:2rem;max-width:1100px;opacity:0;animation:fadeUp 0.6s ease 0.78s forwards}
+    .hero-proof-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:1.2rem 1.2rem;min-height:140px;position:relative;overflow:hidden}
+    .hero-proof-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,255,135,0.08),transparent 70%);opacity:0;transition:opacity 0.25s;pointer-events:none}
+    .hero-proof-card:hover::before{opacity:1}
+    .hero-proof-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem}
+    .hero-proof-value{font-family:'Syne',sans-serif;font-size:1.55rem;line-height:1;font-weight:800;color:var(--text);margin-bottom:0.4rem}
+    .hero-proof-copy{font-size:11px;line-height:1.7;color:var(--muted2)}
+    .stats-row{display:flex;gap:3rem;flex-wrap:wrap;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);opacity:0;animation:fadeUp 0.6s ease 0.85s forwards}
+    .stat{display:flex;flex-direction:column;gap:0.2rem}
+    .stat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;line-height:1}
+    .g{color:var(--accent)}.b{color:var(--accent2)}.r{color:var(--accent3)}
+    .stat-label{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+    .scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeIn 1s ease 2s forwards}
+    .scroll-ind span{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+    .scroll-arrow{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollDown 1.5s ease-in-out infinite}
+    @keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+    @keyframes fadeIn{to{opacity:1}}
+    section{padding:6rem 5rem}
+    .sec-header{margin-bottom:3.5rem}
+    .sec-label{font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:0.5rem}
+    h2{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-1.5px}
+    #hire-signal{padding-top:3rem}
+    .decision-layout{display:grid;grid-template-columns:0.95fr 1.05fr;gap:1.5rem;align-items:stretch}
+    .decision-panel,.proof-panel{background:var(--card);border:1px solid var(--border);padding:1.5rem;position:relative;overflow:hidden}
+    .decision-panel::before,.proof-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(140deg,rgba(0,200,255,0.04),transparent 60%);pointer-events:none}
+    .decision-kicker{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:0.7rem}
+    .decision-copy{font-size:12px;color:var(--muted2);line-height:1.8;margin-bottom:1.3rem;max-width:46ch}
+    .decision-tabs{display:flex;flex-direction:column;gap:0.8rem}
+    .decision-tab{width:100%;text-align:left;background:transparent;border:1px solid var(--border);padding:1rem 1.1rem;color:var(--text);font-family:'JetBrains Mono',monospace;cursor:pointer;transition:all 0.25s}
+    .decision-tab:hover,.decision-tab.active{border-color:var(--accent);background:rgba(0,255,135,0.06);transform:translateX(6px)}
+    .decision-tab strong{display:block;font-size:12px;font-weight:500;margin-bottom:0.35rem}
+    .decision-tab span{display:block;font-size:10px;line-height:1.7;color:var(--muted2)}
+    .proof-headline{font-family:'Syne',sans-serif;font-size:2rem;line-height:1.02;max-width:12ch;margin-bottom:0.9rem}
+    .proof-sub{font-size:12px;color:var(--muted2);line-height:1.9;margin-bottom:1rem;max-width:52ch}
+    .proof-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.8rem;margin-bottom:1rem}
+    .proof-metric{border:1px solid var(--border);padding:0.9rem;background:rgba(255,255,255,0.02)}
+    .proof-metric strong{display:block;font-family:'Syne',sans-serif;font-size:1.45rem;line-height:1;color:var(--accent)}
+    .proof-metric span{display:block;font-size:10px;letter-spacing:1px;color:var(--muted);margin-top:0.35rem;text-transform:uppercase}
+    .proof-list{list-style:none;display:flex;flex-direction:column;gap:0.75rem}
+    .proof-list li{padding-left:1.1rem;position:relative;font-size:12px;line-height:1.8;color:var(--muted2)}
+    .proof-list li::before{content:'+';position:absolute;left:0;color:var(--accent)}
+    /* BANK BADGE */
+    .bank-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,255,135,0.06);border:1px solid rgba(0,255,135,0.25);padding:0.6rem 1rem;font-size:10px;letter-spacing:1.5px;color:var(--accent);margin-bottom:1.2rem;text-transform:uppercase;flex-wrap:wrap;line-height:1.7}
+    .bank-badge strong{color:#fff;font-weight:500}
+    #skills{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    .skill-bars{display:flex;flex-direction:column;gap:1.2rem}
+    .skill-bar-header{display:flex;justify-content:space-between;margin-bottom:0.4rem}
+    .skill-name{font-size:12px;color:var(--text)}
+    .skill-pct{font-size:11px;color:var(--muted2)}
+    .bar-track{height:3px;background:var(--border);position:relative;overflow:visible}
+    .bar-fill{height:100%;width:0;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);position:relative}
+    .bar-fill::after{content:'';position:absolute;right:-1px;top:-4px;width:10px;height:10px;border-radius:50%;background:inherit;box-shadow:0 0 8px currentColor}
+    .bar-green{background:var(--accent)}.bar-blue{background:var(--accent2)}.bar-red{background:var(--accent3)}
+    .tech-cloud{display:flex;flex-wrap:wrap;gap:0.6rem}
+    .tech-pill{padding:0.4rem 0.9rem;font-size:11px;border:1px solid var(--border);color:var(--muted2);transition:all 0.2s;cursor:default;letter-spacing:0.5px}
+    .tech-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,255,135,0.05);transform:translateY(-2px)}
+    .timeline{position:relative;padding-left:2rem}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent2),transparent)}
+    .exp-item{position:relative;padding:0 0 3rem 2.5rem;opacity:0;transform:translateX(-20px);transition:all 0.6s ease}
+    .exp-item.visible{opacity:1;transform:none}
+    .exp-dot{position:absolute;left:-6px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);transition:background 0.3s}
+    .exp-item:hover .exp-dot{background:var(--accent)}
+    .exp-period{font-size:10px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:0.4rem}
+    .exp-role-wrap{display:flex;align-items:baseline;gap:1rem;margin-bottom:0.2rem;flex-wrap:wrap}
+    .exp-role{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700}
+    .exp-co{font-size:11px;color:var(--muted2);letter-spacing:1px}
+    .exp-badge{display:inline-block;padding:0.15rem 0.5rem;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(0,255,135,0.1);color:var(--accent);border:1px solid rgba(0,255,135,0.2);margin-bottom:0.8rem}
+    .exp-points{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.8rem}
+    .exp-points li{font-size:12px;color:var(--muted2);padding-left:1.2rem;position:relative;line-height:1.7}
+    .exp-points li::before{content:'›';position:absolute;left:0;color:var(--accent);font-size:14px}
+    .exp-points li strong{color:var(--text);font-weight:500}
+    .impact-tag{display:inline-block;background:rgba(0,200,255,0.08);border:1px solid rgba(0,200,255,0.2);color:var(--accent2);font-size:10px;padding:0.1rem 0.4rem;margin-left:0.3rem;letter-spacing:0.5px;vertical-align:middle}
+    .bank-tag{display:inline-block;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.25);color:var(--accent);font-size:10px;padding:0.1rem 0.4rem;margin-left:0.3rem;letter-spacing:0.5px;vertical-align:middle}
+    #simulator{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+    .sim-canvas-wrap{background:var(--card);border:1px solid var(--border);padding:1.5rem}
+    .sim-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:1rem}
+    canvas{display:block;width:100%}
+    .sim-controls{display:flex;flex-direction:column;gap:1.5rem}
+    .ctrl-label{font-size:11px;color:var(--muted2);margin-bottom:0.5rem;display:flex;justify-content:space-between}
+    .ctrl-label span{color:var(--accent);font-weight:500}
+    input[type=range]{width:100%;-webkit-appearance:none;height:2px;background:var(--border);outline:none;accent-color:var(--accent)}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer}
+    .sim-metric{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+    .m-card{background:var(--card);border:1px solid var(--border);padding:1rem;text-align:center;transition:border-color 0.3s}
+    .m-card:hover{border-color:var(--accent)}
+    .m-val{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1}
+    .m-val.blue{color:var(--accent2)}
+    .m-key{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:0.3rem}
+    .toggle-btn{padding:0.6rem 1rem;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+    .toggle-btn.active{background:rgba(0,255,135,0.1);border-color:var(--accent);color:var(--accent)}
+    .btn-row{display:flex;gap:0.5rem;flex-wrap:wrap}
+    .log-stream{background:var(--bg);border:1px solid var(--border);padding:1rem;height:120px;overflow-y:auto;font-size:10px;color:var(--muted);line-height:1.8}
+    .log-stream .info{color:var(--accent2)}.log-stream .warn{color:#f0c060}.log-stream .ok{color:var(--accent)}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+    .proj-card{background:var(--card);border:1px solid var(--border);padding:2rem;transition:all 0.3s;position:relative;overflow:hidden}
+    .proj-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,135,0.03),transparent);opacity:0;transition:opacity 0.3s;pointer-events:none}
+    .proj-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+    .proj-card:hover::before{opacity:1}
+    .proj-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+    .proj-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
+    .proj-desc{font-size:12px;color:var(--muted2);line-height:1.8;margin-bottom:1.2rem}
+    .proj-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem}
+    .proj-tag{padding:0.25rem 0.6rem;font-size:10px;border:1px solid var(--border);color:var(--muted2);letter-spacing:0.5px}
+    .proj-stats{display:flex;gap:1.5rem}
+    .proj-stat{display:flex;flex-direction:column;gap:0.1rem}
+    .proj-stat-val{font-size:14px;font-weight:500;color:var(--accent)}
+    .proj-stat-key{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+    .proj-actions{display:flex;gap:0.8rem;align-items:center;justify-content:space-between;margin-top:1.2rem;flex-wrap:wrap}
+    .proj-link,.proj-button{font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:color 0.2s}
+    .proj-link{color:var(--muted)}
+    .proj-card:hover .proj-link{color:var(--accent)}
+    .proj-button{background:none;border:none;color:var(--accent2);padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace}
+    .proj-button:hover{color:var(--accent)}
+    .spotlight-panel{margin-top:1.5rem;background:var(--card);border:1px solid var(--border);padding:1.6rem;display:grid;grid-template-columns:1.1fr 0.9fr;gap:1.2rem;position:relative;overflow:hidden}
+    .spotlight-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,135,0.04),transparent 60%);pointer-events:none}
+    .spotlight-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:0.5rem}
+    .spotlight-title{font-family:'Syne',sans-serif;font-size:1.9rem;line-height:1;margin-bottom:0.8rem}
+    .spotlight-copy{font-size:12px;line-height:1.9;color:var(--muted2);max-width:58ch}
+    .spotlight-list{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+    .spotlight-list li{font-size:11px;line-height:1.8;color:var(--muted2);padding-left:1rem;position:relative}
+    .spotlight-list li::before{content:'>';position:absolute;left:0;color:var(--accent)}
+    .spotlight-stack{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem}
+    .spotlight-chip{padding:0.3rem 0.65rem;border:1px solid var(--border);font-size:10px;color:var(--muted2)}
+    #contact{text-align:center;background:var(--surface);border-top:1px solid var(--border)}
+    .closing-panel{max-width:860px;margin:2.5rem auto 0;background:var(--card);border:1px solid var(--border);padding:1.8rem;position:relative;overflow:hidden;text-align:left}
+    .closing-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,135,0.05),transparent 60%);pointer-events:none}
+    .closing-kicker{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:0.7rem}
+    .closing-title{font-family:'Syne',sans-serif;font-size:2rem;line-height:1.02;margin-bottom:0.8rem}
+    .closing-copy{font-size:12px;color:var(--muted2);line-height:1.9;max-width:56ch}
+    .closing-points{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.8rem;margin-top:1.2rem}
+    .closing-points li{border:1px solid var(--border);background:rgba(255,255,255,0.02);padding:0.9rem;font-size:11px;line-height:1.7;color:var(--muted2)}
+    .closing-points strong{display:block;color:var(--text);font-size:11px;margin-bottom:0.35rem}
+    .contact-grid{display:flex;justify-content:center;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
+    .contact-card{background:var(--card);border:1px solid var(--border);padding:1.2rem 2rem;text-decoration:none;color:var(--text);transition:all 0.25s;display:flex;align-items:center;gap:0.8rem;font-size:12px}
+    .contact-card:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+    .avail-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,255,135,0.08);border:1px solid rgba(0,255,135,0.2);padding:0.5rem 1.2rem;font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:2rem}
+    footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:10px;color:var(--muted);letter-spacing:1px}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .reveal.visible{opacity:1;transform:none}
+    .reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}
+    @media(max-width:900px){
+      nav{padding:1rem 1.5rem;gap:1rem}
+      .nav-links{display:none}
+      section,#hero{padding:4rem 1.5rem}
+      .skills-layout,.sim-grid,.decision-layout,.spotlight-panel{grid-template-columns:1fr;gap:2rem}
+      .stats-row,.hero-proof-grid,.proof-metrics{gap:0.8rem}
+      .hero-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .proof-metrics,.closing-points{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:0.5rem}
+    }
+  </style>
 </head>
 <body>
 
@@ -206,6 +210,7 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="https://drive.google.com/file/d/1keNLuyrX8rZKhQho6AQNV0njHgJaiRiD/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="nav-cv">View My CV</a>
 </nav>
 
 <section id="hero">
@@ -214,7 +219,6 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
   <div class="glow-orb2"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="dot-pulse"></span>Available for remote roles</div>
-    <a href="https://drive.google.com/file/d/1keNLuyrX8rZKhQho6AQNV0njHgJaiRiD/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="nav-cv">View My CV</a>
     <h1>Deepak<br><span class="line2">Satuluri</span></h1>
     <div class="typed-wrap">// <span class="typed-text" id="typed"></span><span class="cursor-blink">_</span></div>
     <p class="hero-desc">Senior Backend Engineer for teams that need backend systems to scale, stay reliable, and ship fast. I build production APIs, Kafka pipelines, platform tooling, and cloud-native services that reduce operational pain instead of creating more of it. Actively contributing to open source — real tools, real repos, real impact.</p>
@@ -228,17 +232,17 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
       <div class="hero-proof-card">
         <div class="hero-proof-label">Why Me</div>
         <div class="hero-proof-value" style="font-size:1.1rem">Founding Engineer</div>
-        <div class="hero-proof-copy">Worked as a founding engineer and built core platform capability with real ownership, not narrow ticket execution.</div>
+        <div class="hero-proof-copy">Built core platform capability from scratch at APIwiz — real ownership, not narrow ticket execution.</div>
+      </div>
+      <div class="hero-proof-card">
+        <div class="hero-proof-label">Banking Production</div>
+        <div class="hero-proof-value" style="font-size:0.95rem;color:var(--accent)">EWB · RCBC · Tonik</div>
+        <div class="hero-proof-copy">API gateway and orchestration infrastructure used live by 3 banks — including a no-code API Builder for payment flows.</div>
       </div>
       <div class="hero-proof-card">
         <div class="hero-proof-label">Scale Signal</div>
         <div class="hero-proof-value">50K+</div>
-        <div class="hero-proof-copy">Hands-on with event pipelines, caching layers, observability, and production reliability under real traffic.</div>
-      </div>
-      <div class="hero-proof-card">
-        <div class="hero-proof-label">Hiring Signal</div>
-        <div class="hero-proof-value">Remote</div>
-        <div class="hero-proof-copy">Reliable across IST, US, and EU collaboration rhythms with clear async communication and follow-through.</div>
+        <div class="hero-proof-copy">Kafka pipelines, multi-layer caching, observability, and production reliability under real traffic.</div>
       </div>
       <div class="hero-proof-card">
         <div class="hero-proof-label">Open Source</div>
@@ -248,11 +252,12 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
     </div>
     <div class="stats-row">
       <div class="stat"><span class="stat-num g">4+</span><span class="stat-label">Years Exp</span></div>
-      <div class="stat"><span class="stat-num b">50K+</span><span class="stat-label">Events/sec</span></div>
+      <div class="stat"><span class="stat-num b">3</span><span class="stat-label">Banks Live</span></div>
+      <div class="stat"><span class="stat-num g">50K+</span><span class="stat-label">Events/sec</span></div>
       <div class="stat"><span class="stat-num g">40%</span><span class="stat-label">Cost Saved</span></div>
       <div class="stat"><span class="stat-num r">10x</span><span class="stat-label">API Latency</span></div>
       <div class="stat"><span class="stat-num b">22+</span><span class="stat-label">Policy Types</span></div>
-      <div class="stat"><span class="stat-num g">OSS</span><span class="stat-label">Active Contributor</span></div>
+      <div class="stat"><span class="stat-num g">OSS</span><span class="stat-label">Contributor</span></div>
     </div>
   </div>
   <div class="scroll-ind"><span>Scroll</span><div class="scroll-arrow"></div></div>
@@ -268,7 +273,11 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
       <div class="decision-kicker">Choose the hiring lens</div>
       <p class="decision-copy">Hiring managers, founders, and recruiters rarely look for the exact same thing. Pick the lens you care about and this section will surface the strongest case fast.</p>
       <div class="decision-tabs" id="decisionTabs">
-        <button class="decision-tab active" type="button" data-proof="scale">
+        <button class="decision-tab active" type="button" data-proof="banking">
+          <strong>I need someone with fintech or banking production experience.</strong>
+          <span>API gateway and orchestration infrastructure running live at EWB, RCBC, and Tonik banks — including a no-code API Builder that lets business users deploy payment APIs without developer involvement.</span>
+        </button>
+        <button class="decision-tab" type="button" data-proof="scale">
           <strong>I need someone who can handle scale.</strong>
           <span>Kafka pipelines at 50K+ events/sec, 10x API latency reduction, Grafana lag dashboards, multi-layer caching, and cloud-native infra — with open-source tooling to back it up.</span>
         </button>
@@ -283,18 +292,22 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
       </div>
     </div>
     <div class="proof-panel reveal reveal-d1">
-      <div class="decision-kicker" id="proofKicker">Scale Lens</div>
-      <div class="proof-headline" id="proofHeadline">Production backend engineer with real throughput exposure.</div>
-      <p class="proof-sub" id="proofSub">Deepak has already worked on the kind of systems that force engineers to care about performance, reliability, fault tolerance, and operational clarity.</p>
+      <div class="decision-kicker" id="proofKicker">Banking Lens</div>
+      <div class="proof-headline" id="proofHeadline">API infrastructure running live in 3 banks.</div>
+      <p class="proof-sub" id="proofSub">Deepak built the API gateway and orchestration layer used in production by EWB, RCBC, and Tonik — real fintech infrastructure handling payment flows, not just internal tooling.</p>
+      <div class="bank-badge" id="bankBadge">
+        <span class="dot-pulse"></span>
+        Production at &nbsp;<strong>EWB</strong>&nbsp; · &nbsp;<strong>RCBC</strong>&nbsp; · &nbsp;<strong>Tonik</strong>&nbsp; — gateway, orchestration &amp; no-code payment API builder
+      </div>
       <div class="proof-metrics">
-        <div class="proof-metric"><strong id="proofMetric1">50K+</strong><span id="proofMetric1Label">Events/sec pipelines</span></div>
-        <div class="proof-metric"><strong id="proofMetric2">10x</strong><span id="proofMetric2Label">Latency improvement</span></div>
-        <div class="proof-metric"><strong id="proofMetric3">40%</strong><span id="proofMetric3Label">Infra cost reduction</span></div>
+        <div class="proof-metric"><strong id="proofMetric1">3</strong><span id="proofMetric1Label">Banks live in prod</span></div>
+        <div class="proof-metric"><strong id="proofMetric2">22+</strong><span id="proofMetric2Label">Gateway policy types</span></div>
+        <div class="proof-metric"><strong id="proofMetric3">0-code</strong><span id="proofMetric3Label">Payment API builder</span></div>
       </div>
       <ul class="proof-list" id="proofList">
-        <li>Built Kafka pipelines with Grafana lag dashboards and alert-driven recovery patterns.</li>
-        <li>Implemented multi-layer caching and optimized APIs for high-traffic workloads.</li>
-        <li>Worked across cloud storage, encryption, Kubernetes and gateway infrastructure in production.</li>
+        <li>Built API gateway infrastructure used by APAC banks for payment gateway management and API orchestration.</li>
+        <li>Developed a no-code API Builder that lets business users create and deploy payment APIs with no developer involvement.</li>
+        <li>Delivered Apigee to Kong migration for enterprise customers, eliminating vendor lock-in at banking scale.</li>
       </ul>
     </div>
   </div>
@@ -340,11 +353,12 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
       </div>
       <div class="exp-badge">Current Role</div>
       <ul class="exp-points">
-        <li>Engineered <strong>Apiwiz Gateway</strong> (native API gateway) and <strong>API Builder</strong> — workflow automation platform for policy execution across distributed services</li>
+        <li>Built <strong>API gateway and orchestration infrastructure</strong> used in production by <strong>EWB, RCBC, and Tonik</strong> banks — covering gateway management, API lifecycle, and a no-code API Builder that lets business users create and deploy payment APIs without any developer involvement<span class="bank-tag">3 banks live</span></li>
+        <li>Engineered <strong>Apiwiz Gateway</strong> (native API gateway) with <strong>22+ policy types</strong> — rate limiting, auth, transformation, routing — built entirely from scratch at a seed-stage startup<span class="bank-tag">22+ policies</span></li>
         <li>Designed a data archival pipeline routing 60-day-old records to cold storage (S3 / GCP / Azure Blob)<span class="impact-tag">40% cost reduction</span></li>
-        <li>Built Kafka pipelines processing <strong>50,000+ events/second</strong> with real-time Grafana consumer lag dashboards</li>
+        <li>Built Kafka pipelines processing <strong>50,000+ events/second</strong> with real-time Grafana consumer lag dashboards and alert-driven auto-recovery</li>
         <li>Implemented AES/RSA encryption for secure multi-cloud data integrations</li>
-        <li>OAuth + JWT with <strong>multi-layer caching</strong> (Caffeine → Redis → PostgreSQL) for high-traffic endpoints</li>
+        <li>OAuth + JWT with <strong>multi-layer caching</strong> (Caffeine → Redis → PostgreSQL) cutting API response times from 10+ seconds to under 1 second</li>
         <li>Kubernetes deployments with health checks, resource limits, rolling updates<span class="impact-tag">zero-downtime</span></li>
       </ul>
     </div>
@@ -371,9 +385,9 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
       </div>
       <div class="exp-badge">Founding Engineer (1 of 5)</div>
       <ul class="exp-points">
-        <li>Helped shape platform foundation and core API infrastructure from scratch</li>
-        <li>Led the <strong>Apigee-to-Kong migration</strong>, overhauling API governance and reducing vendor lock-in</li>
-        <li>Reduced API response times<span class="impact-tag">&gt;10s → &lt;1s</span> through routing and query optimization</li>
+        <li>Helped shape platform foundation and core API infrastructure from scratch — no playbook, no prior architecture to inherit</li>
+        <li>Led the <strong>Apigee-to-Kong migration</strong>, overhauling API governance and eliminating vendor lock-in for enterprise banking customers</li>
+        <li>Reduced API response times<span class="impact-tag">&gt;10s → &lt;1s</span> through routing optimization and multi-layer caching</li>
         <li>Operated across IST / US / EU time zones in distributed async team environments</li>
       </ul>
     </div>
@@ -498,16 +512,16 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
     <p class="sec-label" style="text-align:center">// Let's build something</p>
     <h2 style="margin-bottom:1rem;text-align:center">Open to Remote Roles</h2>
     <div style="display:flex;justify-content:center;margin-bottom:1.5rem"><div class="avail-badge"><span class="dot-pulse"></span>Actively looking — global companies welcome</div></div>
-    <p style="font-size:12px;color:var(--muted2);max-width:560px;margin:0 auto;line-height:1.9;text-align:center">If your team needs a backend engineer who can own production systems, reason about scale, and work reliably in a distributed setup, I’m ready to step in.</p>
+    <p style="font-size:12px;color:var(--muted2);max-width:560px;margin:0 auto;line-height:1.9;text-align:center">If your team needs a backend engineer who can own production systems, reason about scale, and work reliably in a distributed setup, I'm ready to step in.</p>
   </div>
   <div class="closing-panel reveal">
     <div class="closing-kicker">Why Hire Deepak</div>
     <div class="closing-title">Strong backend ownership without the enterprise drag.</div>
-    <p class="closing-copy">I’m most valuable in teams that want someone who can understand product needs quickly, design solid backend systems, and make pragmatic decisions under ambiguity. I work best where reliability matters, speed matters, and hand-holding does not.</p>
+    <p class="closing-copy">I'm most valuable in teams that want someone who can understand product needs quickly, design solid backend systems, and make pragmatic decisions under ambiguity. I work best where reliability matters, speed matters, and hand-holding does not.</p>
     <ul class="closing-points">
-      <li><strong>Production-first</strong>Used to building systems that need monitoring, scaling, fault handling, and operational clarity.</li>
-      <li><strong>High-agency</strong>Comfortable taking vague backend problems and turning them into shipped solutions with clean tradeoffs.</li>
-      <li><strong>Remote-ready</strong>Clear communicator across time zones, with enough structure to keep work moving without constant sync.</li>
+      <li><strong>Banking Production</strong>API gateway and no-code payment builder running live at EWB, RCBC, and Tonik — real fintech infrastructure, not demo projects.</li>
+      <li><strong>High-agency</strong>Comfortable taking vague backend problems and turning them into shipped solutions with clean tradeoffs. Built 22+ gateway policy types from zero.</li>
+      <li><strong>Remote-ready</strong>Clear communicator across IST, US, and EU time zones. Enough structure to keep work moving without constant sync.</li>
       <li><strong>Open Source Active</strong>Actively contributing to open-source projects — not just consuming libraries but shipping real, usable tools to the community.</li>
     </ul>
   </div>
@@ -526,234 +540,254 @@ footer{padding:2rem 5rem;border-top:1px solid var(--border);display:flex;justify
 </footer>
 
 <script>
-
-const phrases=['Senior Backend Engineer','Distributed Systems Builder','API Platform Architect','Kafka Pipeline Engineer','Engineer You Can Trust With Production'];
-let pi=0,ci=0,del=false;
-const typedEl=document.getElementById('typed');
-function typeLoop(){
-  const p=phrases[pi];
-  if(!del){typedEl.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(typeLoop,2000);return}}
-  else{typedEl.textContent=p.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length}}
-  setTimeout(typeLoop,del?50:80);
-}
-setTimeout(typeLoop,1200);
-
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
-document.querySelectorAll('.reveal,.exp-item').forEach(el=>obs.observe(el));
-
-const barObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.bar-fill').forEach(b=>{b.style.width=b.dataset.pct+'%'});barObs.disconnect()}});
-},{threshold:0.3});
-barObs.observe(document.getElementById('skillBars'));
-
-const techs=[
-  {t:'Java 17',c:'g'},{t:'Spring Boot',c:'g'},{t:'Python',c:'b'},{t:'FastAPI',c:'b'},{t:'Flask',c:'b'},
-  {t:'Apache Kafka',c:'r'},{t:'RabbitMQ',c:'r'},{t:'SQS',c:'r'},{t:'Redis',c:'r'},{t:'Caffeine',c:''},
-  {t:'PostgreSQL',c:'b'},{t:'MySQL',c:'b'},{t:'MongoDB',c:'g'},{t:'AWS S3',c:''},{t:'GCP',c:''},
-  {t:'Azure Blob',c:''},{t:'Docker',c:'b'},{t:'Kubernetes',c:'b'},{t:'Jenkins',c:''},{t:'GitHub Actions',c:''},
-  {t:'Grafana',c:'r'},{t:'Prometheus',c:'r'},{t:'Kong',c:'g'},{t:'Apigee',c:'g'},{t:'Postman',c:''},
-  {t:'JMeter',c:''},{t:'AES/RSA',c:'r'},{t:'OAuth',c:'r'},{t:'JWT',c:'r'},{t:'Picocli',c:'g'},
-  {t:'Spring AI',c:'g'},{t:'Vector DB',c:'b'},{t:'Microservices',c:'g'},{t:'Open Source Contributor',c:'g'},
-];
-const cm={g:'var(--accent)',b:'var(--accent2)',r:'var(--accent3)','':`var(--muted2)`};
-const tc=document.getElementById('techCloud');
-techs.forEach(({t,c})=>{
-  const s=document.createElement('span');s.className='tech-pill';s.textContent=t;
-  s.addEventListener('mouseenter',()=>s.style.color=cm[c]);
-  s.addEventListener('mouseleave',()=>s.style.color='');
-  tc.appendChild(s);
-});
-
-const proofContent={
-  scale:{
-    kicker:'Scale Lens',
-    headline:'Production backend engineer with real throughput exposure.',
-    sub:'Deepak has already worked on the kind of systems that force engineers to care about performance, reliability, fault tolerance, and operational clarity.',
-    metrics:[
-      ['50K+','Events/sec pipelines'],
-      ['10x','Latency improvement'],
-      ['40%','Infra cost reduction']
-    ],
-    bullets:[
-      'Built Kafka pipelines with Grafana lag dashboards and alert-driven recovery patterns.',
-      'Implemented multi-layer caching and optimized APIs for high-traffic workloads.',
-      'Worked across cloud storage, encryption, Kubernetes and gateway infrastructure in production.'
-    ]
-  },
-  ownership:{
-    kicker:'Ownership Lens',
-    headline:'Acts like an owner, not a ticket-closer.',
-    sub:'The strongest signal on the page is not just technical range. It is evidence that Deepak can move ambiguous backend work from idea to production with accountability.',
-    metrics:[
-      ['1 of 5','Founding engineers'],
-      ['22+','Policy types delivered'],
-      ['0','Downtime target']
-    ],
-    bullets:[
-      'Helped shape platform foundations at APIwiz instead of only contributing to isolated services.',
-      'Built gateway, builder, archival and security capabilities across multiple backend domains.',
-      'Operated close to product needs, infra tradeoffs and long-term maintainability.'
-    ]
-  },
-  remote:{
-    kicker:'Remote Lens',
-    headline:'Low-friction teammate for distributed teams.',
-    sub:'A remote backend hire should reduce coordination drag, communicate clearly, and still ship. The profile here signals exactly that operating style.',
-    metrics:[
-      ['IST / US / EU','Time-zone overlap'],
-      ['Async','Execution style'],
-      ['4+ yrs','Professional delivery']
-    ],
-    bullets:[
-      'Worked across multiple time zones in startup and enterprise environments.',
-      'Built systems that require careful documentation, observability and handoff quality.',
-      'Combines technical depth with practical communication around incidents, APIs and tradeoffs.'
-    ]
+  const phrases=['Senior Backend Engineer','Distributed Systems Builder','API Platform Architect','Kafka Pipeline Engineer','Engineer You Can Trust With Production'];
+  let pi=0,ci=0,del=false;
+  const typedEl=document.getElementById('typed');
+  function typeLoop(){
+    const p=phrases[pi];
+    if(!del){typedEl.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(typeLoop,2000);return}}
+    else{typedEl.textContent=p.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length}}
+    setTimeout(typeLoop,del?50:80);
   }
-};
+  setTimeout(typeLoop,1200);
 
-const proofEls={
-  kicker:document.getElementById('proofKicker'),
-  headline:document.getElementById('proofHeadline'),
-  sub:document.getElementById('proofSub'),
-  metrics:[
-    [document.getElementById('proofMetric1'),document.getElementById('proofMetric1Label')],
-    [document.getElementById('proofMetric2'),document.getElementById('proofMetric2Label')],
-    [document.getElementById('proofMetric3'),document.getElementById('proofMetric3Label')]
-  ],
-  list:document.getElementById('proofList')
-};
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
+  document.querySelectorAll('.reveal,.exp-item').forEach(el=>obs.observe(el));
 
-document.querySelectorAll('.decision-tab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    const data=proofContent[tab.dataset.proof];
-    document.querySelectorAll('.decision-tab').forEach(btn=>btn.classList.remove('active'));
-    tab.classList.add('active');
-    proofEls.kicker.textContent=data.kicker;
-    proofEls.headline.textContent=data.headline;
-    proofEls.sub.textContent=data.sub;
-    data.metrics.forEach((metric,i)=>{
-      proofEls.metrics[i][0].textContent=metric[0];
-      proofEls.metrics[i][1].textContent=metric[1];
+  const barObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.bar-fill').forEach(b=>{b.style.width=b.dataset.pct+'%'});barObs.disconnect()}});
+  },{threshold:0.3});
+  barObs.observe(document.getElementById('skillBars'));
+
+  const techs=[
+    {t:'Java 17',c:'g'},{t:'Spring Boot',c:'g'},{t:'Python',c:'b'},{t:'FastAPI',c:'b'},{t:'Flask',c:'b'},
+    {t:'Apache Kafka',c:'r'},{t:'RabbitMQ',c:'r'},{t:'SQS',c:'r'},{t:'Redis',c:'r'},{t:'Caffeine',c:''},
+    {t:'PostgreSQL',c:'b'},{t:'MySQL',c:'b'},{t:'MongoDB',c:'g'},{t:'AWS S3',c:''},{t:'GCP',c:''},
+    {t:'Azure Blob',c:''},{t:'Docker',c:'b'},{t:'Kubernetes',c:'b'},{t:'Jenkins',c:''},{t:'GitHub Actions',c:''},
+    {t:'Grafana',c:'r'},{t:'Prometheus',c:'r'},{t:'Kong',c:'g'},{t:'Apigee',c:'g'},{t:'Postman',c:''},
+    {t:'JMeter',c:''},{t:'AES/RSA',c:'r'},{t:'OAuth',c:'r'},{t:'JWT',c:'r'},{t:'Picocli',c:'g'},
+    {t:'Spring AI',c:'g'},{t:'Vector DB',c:'b'},{t:'Microservices',c:'g'},{t:'Open Source Contributor',c:'g'},
+  ];
+  const cm={g:'var(--accent)',b:'var(--accent2)',r:'var(--accent3)','':`var(--muted2)`};
+  const tc=document.getElementById('techCloud');
+  techs.forEach(({t,c})=>{
+    const s=document.createElement('span');s.className='tech-pill';s.textContent=t;
+    s.addEventListener('mouseenter',()=>s.style.color=cm[c]);
+    s.addEventListener('mouseleave',()=>s.style.color='');
+    tc.appendChild(s);
+  });
+
+  const proofContent={
+    banking:{
+      kicker:'Banking Lens',
+      headline:'API infrastructure running live in 3 banks.',
+      sub:'Deepak built the API gateway and orchestration layer used in production by EWB, RCBC, and Tonik — real fintech infrastructure handling payment flows, not just internal tooling.',
+      showBankBadge:true,
+      metrics:[
+        ['3','Banks live in prod'],
+        ['22+','Gateway policy types'],
+        ['0-code','Payment API builder']
+      ],
+      bullets:[
+        'Built API gateway infrastructure used by APAC banks for payment gateway management and API orchestration.',
+        'Developed a no-code API Builder that lets business users create and deploy payment APIs with no developer involvement.',
+        'Delivered Apigee to Kong migration for enterprise banking customers, eliminating vendor lock-in.'
+      ]
+    },
+    scale:{
+      kicker:'Scale Lens',
+      headline:'Production backend engineer with real throughput exposure.',
+      sub:'Deepak has already worked on the kind of systems that force engineers to care about performance, reliability, fault tolerance, and operational clarity.',
+      showBankBadge:false,
+      metrics:[
+        ['50K+','Events/sec pipelines'],
+        ['10x','Latency improvement'],
+        ['40%','Infra cost reduction']
+      ],
+      bullets:[
+        'Built Kafka pipelines with Grafana lag dashboards and alert-driven recovery patterns.',
+        'Implemented multi-layer caching and optimized APIs for high-traffic workloads.',
+        'Worked across cloud storage, encryption, Kubernetes and gateway infrastructure in production.'
+      ]
+    },
+    ownership:{
+      kicker:'Ownership Lens',
+      headline:'Acts like an owner, not a ticket-closer.',
+      sub:'The strongest signal on the page is not just technical range. It is evidence that Deepak can move ambiguous backend work from idea to production with accountability.',
+      showBankBadge:false,
+      metrics:[
+        ['1 of 5','Founding engineers'],
+        ['22+','Policy types delivered'],
+        ['0','Downtime target']
+      ],
+      bullets:[
+        'Helped shape platform foundations at APIwiz instead of only contributing to isolated services.',
+        'Built gateway, builder, archival and security capabilities across multiple backend domains.',
+        'Operated close to product needs, infra tradeoffs and long-term maintainability.'
+      ]
+    },
+    remote:{
+      kicker:'Remote Lens',
+      headline:'Low-friction teammate for distributed teams.',
+      sub:'A remote backend hire should reduce coordination drag, communicate clearly, and still ship. The profile here signals exactly that operating style.',
+      showBankBadge:false,
+      metrics:[
+        ['IST / US / EU','Time-zone overlap'],
+        ['Async','Execution style'],
+        ['4+ yrs','Professional delivery']
+      ],
+      bullets:[
+        'Worked across multiple time zones in startup and enterprise environments.',
+        'Built systems that require careful documentation, observability and handoff quality.',
+        'Combines technical depth with practical communication around incidents, APIs and tradeoffs.'
+      ]
+    }
+  };
+
+  const proofEls={
+    kicker:document.getElementById('proofKicker'),
+    headline:document.getElementById('proofHeadline'),
+    sub:document.getElementById('proofSub'),
+    bankBadge:document.getElementById('bankBadge'),
+    metrics:[
+      [document.getElementById('proofMetric1'),document.getElementById('proofMetric1Label')],
+      [document.getElementById('proofMetric2'),document.getElementById('proofMetric2Label')],
+      [document.getElementById('proofMetric3'),document.getElementById('proofMetric3Label')]
+    ],
+    list:document.getElementById('proofList')
+  };
+
+  document.querySelectorAll('.decision-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      const data=proofContent[tab.dataset.proof];
+      document.querySelectorAll('.decision-tab').forEach(btn=>btn.classList.remove('active'));
+      tab.classList.add('active');
+      proofEls.kicker.textContent=data.kicker;
+      proofEls.headline.textContent=data.headline;
+      proofEls.sub.textContent=data.sub;
+      proofEls.bankBadge.style.display=data.showBankBadge?'inline-flex':'none';
+      data.metrics.forEach((metric,i)=>{
+        proofEls.metrics[i][0].textContent=metric[0];
+        proofEls.metrics[i][1].textContent=metric[1];
+      });
+      proofEls.list.innerHTML=data.bullets.map(item=>`<li>${item}</li>`).join('');
     });
-    proofEls.list.innerHTML=data.bullets.map(item=>`<li>${item}</li>`).join('');
   });
-});
 
-const projectContent={
-  remotescope:{
-    title:'RemoteScope',
-    copy:'A backend-heavy aggregation engine built to normalize noisy remote-job data into a usable daily feed with filters, sync orchestration and caching.',
-    stack:['Java','Spring Boot','Kafka','PostgreSQL','Jsoup','Redis'],
-    bullets:[
-      'Can ingest from multiple unstable sources and normalize messy inputs.',
-      'Can design APIs around actual user filters instead of toy CRUD endpoints.',
-      'Can combine scheduling, caching and persistence into a coherent backend workflow.'
-    ]
-  },
-  screening:{
-    title:'Resume Screening Pipeline',
-    copy:'An AI-assisted evaluation pipeline where candidate submissions are scored against job requirements and pushed through asynchronous notification flows.',
-    stack:['Java','Spring Boot','Kafka','RabbitMQ','PostgreSQL','Gemini AI'],
-    bullets:[
-      'Shows comfort combining AI calls with backend orchestration and queue-based workflows.',
-      'Demonstrates event-driven decomposition instead of tightly coupled request chains.',
-      'Reflects product thinking: scoring, ranking and downstream HR actions are part of one flow.'
-    ]
-  },
-  apiwizcli:{
-    title:'apiwiz-cli',
-    copy:'A kubectl-style Java CLI for API gateway lifecycle management, designed around dynamic command registration and operator ergonomics.',
-    stack:['Java 17','Picocli','Spring Boot','Maven Shade'],
-    bullets:[
-      'Shows engineering range beyond web APIs by building tooling for platform operators.',
-      'Highlights API product understanding, runtime configuration thinking and command design.',
-      'Signals attention to developer experience, extensibility and maintainable abstractions.'
-    ]
+  const projectContent={
+    remotescope:{
+      title:'RemoteScope',
+      copy:'A backend-heavy aggregation engine built to normalize noisy remote-job data into a usable daily feed with filters, sync orchestration and caching.',
+      stack:['Java','Spring Boot','Kafka','PostgreSQL','Jsoup','Redis'],
+      bullets:[
+        'Can ingest from multiple unstable sources and normalize messy inputs.',
+        'Can design APIs around actual user filters instead of toy CRUD endpoints.',
+        'Can combine scheduling, caching and persistence into a coherent backend workflow.'
+      ]
+    },
+    screening:{
+      title:'Resume Screening Pipeline',
+      copy:'An AI-assisted evaluation pipeline where candidate submissions are scored against job requirements and pushed through asynchronous notification flows.',
+      stack:['Java','Spring Boot','Kafka','RabbitMQ','PostgreSQL','Gemini AI'],
+      bullets:[
+        'Shows comfort combining AI calls with backend orchestration and queue-based workflows.',
+        'Demonstrates event-driven decomposition instead of tightly coupled request chains.',
+        'Reflects product thinking: scoring, ranking and downstream HR actions are part of one flow.'
+      ]
+    },
+    apiwizcli:{
+      title:'apiwiz-cli',
+      copy:'A kubectl-style Java CLI for API gateway lifecycle management, designed around dynamic command registration and operator ergonomics.',
+      stack:['Java 17','Picocli','Spring Boot','Maven Shade'],
+      bullets:[
+        'Shows engineering range beyond web APIs by building tooling for platform operators.',
+        'Highlights API product understanding, runtime configuration thinking and command design.',
+        'Signals attention to developer experience, extensibility and maintainable abstractions.'
+      ]
+    }
+  };
+
+  const spotlightTitle=document.getElementById('spotlightTitle');
+  const spotlightCopy=document.getElementById('spotlightCopy');
+  const spotlightList=document.getElementById('spotlightList');
+  const spotlightStack=document.getElementById('spotlightStack');
+
+  document.querySelectorAll('.proj-button').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const data=projectContent[button.dataset.project];
+      spotlightTitle.textContent=data.title;
+      spotlightCopy.textContent=data.copy;
+      spotlightList.innerHTML=data.bullets.map(item=>`<li>${item}</li>`).join('');
+      spotlightStack.innerHTML=data.stack.map(item=>`<span class="spotlight-chip">${item}</span>`).join('');
+      document.getElementById('projectSpotlight').scrollIntoView({behavior:'smooth',block:'nearest'});
+    });
+  });
+
+  let running=true,totalEvents=0,burstMode=false,dropMode=false,tick=0,logCooldown=0;
+  const rateSlider=document.getElementById('rateSlider');
+  const partSlider=document.getElementById('partSlider');
+  const lagSlider=document.getElementById('lagSlider');
+  const canvas=document.getElementById('kafkaCanvas');
+  const ctx2=canvas.getContext('2d');
+  canvas.width=500;canvas.height=180;
+  const dataPoints=new Array(100).fill(0);
+  const lagData=new Array(100).fill(0);
+
+  document.getElementById('rateSlider').oninput=()=>document.getElementById('rateVal').textContent=parseInt(rateSlider.value).toLocaleString();
+  document.getElementById('partSlider').oninput=()=>document.getElementById('partVal').textContent=partSlider.value;
+  document.getElementById('lagSlider').oninput=()=>document.getElementById('lagThVal').textContent=lagSlider.value;
+
+  const logEl=document.getElementById('logStream');
+  function addLog(msg,cls){
+    const d=document.createElement('div');if(cls)d.className=cls;
+    const n=new Date();
+    d.textContent=`[${n.getHours().toString().padStart(2,'0')}:${n.getMinutes().toString().padStart(2,'0')}:${n.getSeconds().toString().padStart(2,'0')}] ${msg}`;
+    logEl.appendChild(d);logEl.scrollTop=logEl.scrollHeight;
+    while(logEl.children.length>30)logEl.removeChild(logEl.firstChild);
   }
-};
 
-const spotlightTitle=document.getElementById('spotlightTitle');
-const spotlightCopy=document.getElementById('spotlightCopy');
-const spotlightList=document.getElementById('spotlightList');
-const spotlightStack=document.getElementById('spotlightStack');
+  function triggerBurst(){burstMode=!burstMode;document.getElementById('btnBurst').classList.toggle('active',burstMode);addLog(burstMode?'Producer burst: +30K events/s':'Burst deactivated','warn')}
+  function triggerDrop(){dropMode=!dropMode;document.getElementById('btnDrop').classList.toggle('active',dropMode);if(dropMode)addLog('Consumer group offline — lag accumulating','warn');else addLog('Consumer group recovered','ok')}
+  function toggleSim(){running=!running;const b=document.getElementById('btnRun');b.innerHTML=running?'&#9632; Pause':'&#9658; Run';b.classList.toggle('active',running)}
 
-document.querySelectorAll('.proj-button').forEach(button=>{
-  button.addEventListener('click',()=>{
-    const data=projectContent[button.dataset.project];
-    spotlightTitle.textContent=data.title;
-    spotlightCopy.textContent=data.copy;
-    spotlightList.innerHTML=data.bullets.map(item=>`<li>${item}</li>`).join('');
-    spotlightStack.innerHTML=data.stack.map(item=>`<span class="spotlight-chip">${item}</span>`).join('');
-    document.getElementById('projectSpotlight').scrollIntoView({behavior:'smooth',block:'nearest'});
-  });
-});
+  function drawCanvas(){
+    const W=canvas.width,H=canvas.height,maxR=65000;
+    ctx2.clearRect(0,0,W,H);
+    ctx2.fillStyle='#0d0d10';ctx2.fillRect(0,0,W,H);
+    const step=W/dataPoints.length;
+    ctx2.strokeStyle='rgba(255,255,255,0.04)';ctx2.lineWidth=1;
+    for(let i=0;i<5;i++){const y=H*i/4;ctx2.beginPath();ctx2.moveTo(0,y);ctx2.lineTo(W,y);ctx2.stroke()}
+    ctx2.beginPath();ctx2.moveTo(0,H);
+    dataPoints.forEach((v,i)=>ctx2.lineTo(i*step,H-v/maxR*(H-10)));
+    ctx2.lineTo(W,H);ctx2.closePath();ctx2.fillStyle='rgba(0,255,135,0.07)';ctx2.fill();
+    ctx2.beginPath();ctx2.strokeStyle='#00ff87';ctx2.lineWidth=2;
+    dataPoints.forEach((v,i)=>{const x=i*step,y=H-v/maxR*(H-10);i===0?ctx2.moveTo(x,y):ctx2.lineTo(x,y)});
+    ctx2.stroke();
+    ctx2.beginPath();ctx2.strokeStyle='rgba(0,200,255,0.6)';ctx2.lineWidth=1;ctx2.setLineDash([3,3]);
+    lagData.forEach((v,i)=>{const x=i*step,y=H-Math.min(v/2000,1)*(H-10);i===0?ctx2.moveTo(x,y):ctx2.lineTo(x,y)});
+    ctx2.stroke();ctx2.setLineDash([]);
+    ctx2.fillStyle='rgba(255,255,255,0.3)';ctx2.font='10px monospace';
+    ctx2.fillText('events/s',6,14);
+    ctx2.fillStyle='rgba(0,200,255,0.5)';ctx2.fillText('lag (ms)',6,26);
+  }
 
-let running=true,totalEvents=0,burstMode=false,dropMode=false,tick=0,logCooldown=0;
-const rateSlider=document.getElementById('rateSlider');
-const partSlider=document.getElementById('partSlider');
-const lagSlider=document.getElementById('lagSlider');
-const canvas=document.getElementById('kafkaCanvas');
-const ctx2=canvas.getContext('2d');
-canvas.width=500;canvas.height=180;
-const dataPoints=new Array(100).fill(0);
-const lagData=new Array(100).fill(0);
-
-document.getElementById('rateSlider').oninput=()=>document.getElementById('rateVal').textContent=parseInt(rateSlider.value).toLocaleString();
-document.getElementById('partSlider').oninput=()=>document.getElementById('partVal').textContent=partSlider.value;
-document.getElementById('lagSlider').oninput=()=>document.getElementById('lagThVal').textContent=lagSlider.value;
-
-const logEl=document.getElementById('logStream');
-function addLog(msg,cls){
-  const d=document.createElement('div');if(cls)d.className=cls;
-  const n=new Date();
-  d.textContent=`[${n.getHours().toString().padStart(2,'0')}:${n.getMinutes().toString().padStart(2,'0')}:${n.getSeconds().toString().padStart(2,'0')}] ${msg}`;
-  logEl.appendChild(d);logEl.scrollTop=logEl.scrollHeight;
-  while(logEl.children.length>30)logEl.removeChild(logEl.firstChild);
-}
-
-function triggerBurst(){burstMode=!burstMode;document.getElementById('btnBurst').classList.toggle('active',burstMode);addLog(burstMode?'Producer burst: +30K events/s':'Burst deactivated','warn')}
-function triggerDrop(){dropMode=!dropMode;document.getElementById('btnDrop').classList.toggle('active',dropMode);if(dropMode)addLog('Consumer group offline — lag accumulating','warn');else addLog('Consumer group recovered','ok')}
-function toggleSim(){running=!running;const b=document.getElementById('btnRun');b.innerHTML=running?'&#9632; Pause':'&#9658; Run';b.classList.toggle('active',running)}
-
-function drawCanvas(){
-  const W=canvas.width,H=canvas.height,maxR=65000;
-  ctx2.clearRect(0,0,W,H);
-  ctx2.fillStyle='#0d0d10';ctx2.fillRect(0,0,W,H);
-  const step=W/dataPoints.length;
-  ctx2.strokeStyle='rgba(255,255,255,0.04)';ctx2.lineWidth=1;
-  for(let i=0;i<5;i++){const y=H*i/4;ctx2.beginPath();ctx2.moveTo(0,y);ctx2.lineTo(W,y);ctx2.stroke()}
-  ctx2.beginPath();ctx2.moveTo(0,H);
-  dataPoints.forEach((v,i)=>ctx2.lineTo(i*step,H-v/maxR*(H-10)));
-  ctx2.lineTo(W,H);ctx2.closePath();ctx2.fillStyle='rgba(0,255,135,0.07)';ctx2.fill();
-  ctx2.beginPath();ctx2.strokeStyle='#00ff87';ctx2.lineWidth=2;
-  dataPoints.forEach((v,i)=>{const x=i*step,y=H-v/maxR*(H-10);i===0?ctx2.moveTo(x,y):ctx2.lineTo(x,y)});
-  ctx2.stroke();
-  ctx2.beginPath();ctx2.strokeStyle='rgba(0,200,255,0.6)';ctx2.lineWidth=1;ctx2.setLineDash([3,3]);
-  lagData.forEach((v,i)=>{const x=i*step,y=H-Math.min(v/2000,1)*(H-10);i===0?ctx2.moveTo(x,y):ctx2.lineTo(x,y)});
-  ctx2.stroke();ctx2.setLineDash([]);
-  ctx2.fillStyle='rgba(255,255,255,0.3)';ctx2.font='10px monospace';
-  ctx2.fillText('events/s',6,14);
-  ctx2.fillStyle='rgba(0,200,255,0.5)';ctx2.fillText('lag (ms)',6,26);
-}
-
-setInterval(()=>{
-  if(!running)return;
-  const rate=Math.max(0,parseInt(rateSlider.value)+(burstMode?30000:0)-(dropMode?5000:0)+(Math.random()-0.5)*3000);
-  dataPoints.push(rate);dataPoints.shift();
-  const lag=dropMode?800+Math.random()*400:Math.max(0,(rate/50000)*300+Math.random()*50-25);
-  lagData.push(lag);lagData.shift();
-  totalEvents+=Math.round(rate/10);
-  const lt=parseInt(lagSlider.value);
-  document.getElementById('mEps').textContent=Math.round(rate/1000)+'K';
-  document.getElementById('mLag').textContent=Math.round(lag)+'ms';
-  document.getElementById('mTotal').textContent=totalEvents>1e6?(totalEvents/1e6).toFixed(1)+'M':totalEvents>1000?Math.round(totalEvents/1000)+'K':totalEvents;
-  document.getElementById('mTopics').textContent=parseInt(partSlider.value)>32?'8':parseInt(partSlider.value)>16?'6':'5';
-  if(lag>lt&&--logCooldown<=0){addLog(`ALERT consumer_lag=${Math.round(lag)}ms > threshold=${lt}ms — scaling consumer_group++`,'warn');logCooldown=20}
-  if(tick++%50===0)addLog(`Processed ${Math.round(rate/1000)}K events/s on ${['api-events','proxy-logs','audit-trail','metrics','runtime-config'][Math.floor(Math.random()*5)]}`,'info');
-  drawCanvas();
-},100);
-setTimeout(()=>{addLog('5 topics initialized','ok');setTimeout(()=>addLog('Consumer groups registered — Grafana monitoring active','ok'),500)},300);
+  setInterval(()=>{
+    if(!running)return;
+    const rate=Math.max(0,parseInt(rateSlider.value)+(burstMode?30000:0)-(dropMode?5000:0)+(Math.random()-0.5)*3000);
+    dataPoints.push(rate);dataPoints.shift();
+    const lag=dropMode?800+Math.random()*400:Math.max(0,(rate/50000)*300+Math.random()*50-25);
+    lagData.push(lag);lagData.shift();
+    totalEvents+=Math.round(rate/10);
+    const lt=parseInt(lagSlider.value);
+    document.getElementById('mEps').textContent=Math.round(rate/1000)+'K';
+    document.getElementById('mLag').textContent=Math.round(lag)+'ms';
+    document.getElementById('mTotal').textContent=totalEvents>1e6?(totalEvents/1e6).toFixed(1)+'M':totalEvents>1000?Math.round(totalEvents/1000)+'K':totalEvents;
+    document.getElementById('mTopics').textContent=parseInt(partSlider.value)>32?'8':parseInt(partSlider.value)>16?'6':'5';
+    if(lag>lt&&--logCooldown<=0){addLog(`ALERT consumer_lag=${Math.round(lag)}ms > threshold=${lt}ms — scaling consumer_group++`,'warn');logCooldown=20}
+    if(tick++%50===0)addLog(`Processed ${Math.round(rate/1000)}K events/s on ${['api-events','proxy-logs','audit-trail','metrics','runtime-config'][Math.floor(Math.random()*5)]}`,'info');
+    drawCanvas();
+  },100);
+  setTimeout(()=>{addLog('5 topics initialized','ok');setTimeout(()=>addLog('Consumer groups registered — Grafana monitoring active','ok'),500)},300);
 </script>
 </body>
 </html>
