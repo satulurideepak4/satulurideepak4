@@ -157,6 +157,9 @@
     .proj-link,.proj-button{font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:color 0.2s}
     .proj-link{color:var(--muted)}
     .proj-card:hover .proj-link{color:var(--accent)}
+    .proj-card--featured{border-color:rgba(0,255,135,0.35);box-shadow:0 0 40px rgba(0,255,135,0.05)}
+    .proj-card--featured::before{opacity:0.6}
+    .proj-feat-badge{display:inline-flex;align-items:center;gap:0.45rem;background:rgba(0,255,135,0.1);border:1px solid rgba(0,255,135,0.3);padding:0.22rem 0.65rem;font-size:9px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:0.85rem}
     .proj-button{background:none;border:none;color:var(--accent2);padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace}
     .proj-button:hover{color:var(--accent)}
     .spotlight-panel{margin-top:1.5rem;background:var(--card);border:1px solid var(--border);padding:1.6rem;display:grid;grid-template-columns:1.1fr 0.9fr;gap:1.2rem;position:relative;overflow:hidden}
@@ -453,6 +456,17 @@
     <h2>Projects</h2>
   </div>
   <div class="projects-grid">
+    <div class="proj-card proj-card--featured reveal">
+      <div class="proj-feat-badge"><span class="dot-pulse"></span>Featured Build</div>
+      <div class="proj-header"><div class="proj-name">JobCRM</div><span style="font-size:1.5rem;opacity:0.6">&#128188;</span></div>
+      <p class="proj-desc">A full-stack, local-first job search CRM that lives entirely on your laptop. Reads your Gmail via OAuth 2.0, tracks every company through a custom status pipeline (cold email → applied → interviewing → offer), auto-detects ghosting at 21 days, searches 7+ job boards (Remotive, Greenhouse, Lever, Ashby, Workday), scores jobs with pluggable AI (Gemini / OpenAI / Anthropic), and writes personalized cold emails — zero data leaving your machine.</p>
+      <div class="proj-stack"><span class="proj-tag">Python</span><span class="proj-tag">FastAPI</span><span class="proj-tag">React 18</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">LangChain</span><span class="proj-tag">Gmail OAuth</span><span class="proj-tag">Docker</span><span class="proj-tag">APScheduler</span></div>
+      <div class="proj-stats"><div class="proj-stat"><span class="proj-stat-val">7+</span><span class="proj-stat-key">Job Sources</span></div><div class="proj-stat"><span class="proj-stat-val">AI</span><span class="proj-stat-key">Scoring</span></div><div class="proj-stat"><span class="proj-stat-val">Full-Stack</span><span class="proj-stat-key">End-to-End</span></div></div>
+      <div class="proj-actions">
+        <button class="proj-button" type="button" data-project="jobcrm">Inspect architecture</button>
+        <a href="https://github.com/satulurideepak4/JobCRM" target="_blank" rel="noopener noreferrer" class="proj-link">&#8594; View on GitHub</a>
+      </div>
+    </div>
     <div class="proj-card reveal">
       <div class="proj-header"><div class="proj-name">RemoteScope</div><span style="font-size:1.5rem;opacity:0.5">&#128301;</span></div>
       <p class="proj-desc">Personal remote job aggregator scraping 13+ sources (Remotive, Himalayas, Arc.dev, WeWorkRemotely) using Jsoup + OkHttp. Filtered REST API with salary, stack, experience, and remote eligibility filters. Daily cron scheduler + Caffeine caching.</p>
@@ -487,21 +501,24 @@
   <div class="spotlight-panel reveal reveal-d2" id="projectSpotlight">
     <div>
       <div class="spotlight-label">Project Spotlight</div>
-      <div class="spotlight-title" id="spotlightTitle">RemoteScope</div>
-      <p class="spotlight-copy" id="spotlightCopy">A backend-heavy aggregation engine built to normalize noisy remote-job data into a usable daily feed with filters, sync orchestration, and caching.</p>
+      <div class="spotlight-title" id="spotlightTitle">JobCRM</div>
+      <p class="spotlight-copy" id="spotlightCopy">A full-stack, local-first job search CRM that reads Gmail, tracks companies through a custom pipeline, searches 7+ job boards, and scores jobs with pluggable AI — all with zero data leaving your machine.</p>
       <div class="spotlight-stack" id="spotlightStack">
-        <span class="spotlight-chip">Java</span>
-        <span class="spotlight-chip">Spring Boot</span>
-        <span class="spotlight-chip">Kafka</span>
+        <span class="spotlight-chip">Python</span>
+        <span class="spotlight-chip">FastAPI</span>
+        <span class="spotlight-chip">React 18</span>
         <span class="spotlight-chip">PostgreSQL</span>
+        <span class="spotlight-chip">LangChain</span>
+        <span class="spotlight-chip">Gmail OAuth</span>
+        <span class="spotlight-chip">Docker</span>
       </div>
     </div>
     <div>
       <div class="spotlight-label">What It Signals</div>
       <ul class="spotlight-list" id="spotlightList">
-        <li>Can ingest from multiple unstable sources and normalize messy inputs.</li>
-        <li>Can design APIs around actual user filters instead of toy CRUD endpoints.</li>
-        <li>Can combine scheduling, caching and persistence into a coherent backend workflow.</li>
+        <li>Integrates Gmail OAuth 2.0, 7+ ATS and job board APIs, and pluggable LLM providers into one coherent system — not a tutorial stack.</li>
+        <li>Status machine in the data model: cold email → applied → interviewing → offer, with ghosting auto-detection at 21 days of silence.</li>
+        <li>Full-stack ownership: DB schema, FastAPI routes, React 18 UI, daily scheduler — every layer designed and shipped end-to-end.</li>
       </ul>
     </div>
   </div>
@@ -675,6 +692,16 @@
   });
 
   const projectContent={
+    jobcrm:{
+      title:'JobCRM',
+      copy:'A full-stack, local-first job search CRM that reads Gmail, tracks every company through a custom pipeline, and searches 7+ job boards with pluggable AI scoring — built to solve a real problem with real architecture.',
+      stack:['Python','FastAPI','React 18','PostgreSQL','LangChain','Gmail OAuth','Docker','APScheduler'],
+      bullets:[
+        'Integrates Gmail OAuth 2.0, 7+ ATS/job board APIs, and pluggable LLM providers (Gemini / OpenAI / Anthropic) into one coherent system — not a tutorial stack.',
+        'Status machine in the data model: cold email → applied → interviewing → offer, with auto-ghosting at 21 days and follow-up reminders at 7 days.',
+        'Full-stack ownership: DB schema, FastAPI routes, React 18 UI, Workday LangChain agent, daily scheduler — every layer designed and shipped end-to-end.'
+      ]
+    },
     remotescope:{
       title:'RemoteScope',
       copy:'A backend-heavy aggregation engine built to normalize noisy remote-job data into a usable daily feed with filters, sync orchestration and caching.',
